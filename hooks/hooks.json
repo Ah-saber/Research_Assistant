@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "tool == \"Write\" && tool_input.file_path matches \"\\\\.(md|txt)$\" && !(tool_input.file_path matches \"README\\\\.md|CLAUDE\\\\.md|PERSONA\\\\.md|PLAN/.*\\\\.md)\")",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path||'';if(/\\.(md|txt)$/.test(p)&&!/(README|CLAUDE|PERSONA)\\.md$|^PLAN\\/.*\\.md$/.test(p)){console.error('[Hook] WARNING: Creating documentation file outside standard locations');console.error('[Hook] File: '+p);console.error('[Hook] Consider using existing templates or updating PLAN/ docs')}}console.log(d))\""
+          }
+        ],
+        "description": "Warn about creating random .md files - keeps docs consolidated"
+      },
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"python (.*?)(test|run|main|script)\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"console.error('[Hook] Check: Ensure Python virtual environment is active');console.error('[Hook] Use: conda activate <env> or source venv/bin/activate')\""
+          }
+        ],
+        "description": "Remind to activate Python virtual environment before running scripts"
+      },
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"(CLAUDE\\\\.md|PERSONA\\\\.md|\\\\.claude-plugin/.*\\\\.json)\")",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"console.error('[Hook] WARNING: Editing critical configuration file');console.error('[Hook] Ensure changes follow project standards')\""
+          }
+        ],
+        "description": "Warn before editing critical configuration files"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.md$\" && tool_input.file_path matches \"C:\\\\\\\\Note\\\\\\\\MyNote_Obs\\\\\\\\**\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const c=i.tool_input?.new_content||'';if(/\\\\[\\\\[.+?\\\\|/.test(c)){console.error('[Hook] NOTE: Wikilink detected - ensure exact filename matching with Glob')}}console.log(d))\""
+          }
+        ],
+        "description": "Check Wikilink format after editing Obsidian notes"
+      },
+      {
+        "matcher": "tool == \"Write\" && tool_input.file_path matches \"\\\\.md$\" && tool_input.file_path matches \"C:\\\\\\\\Note\\\\\\\\MyNote_Obs\\\\\\\\**\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"console.error('[Hook] NOTE: Note created. Consider running /note-standardize for formatting.')\""
+          }
+        ],
+        "description": "Suggest note standardization after creating Obsidian notes"
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"console.log('[Hook] Stop: Response completed, checks finished')\""
+          }
+        ],
+        "description": "Log after each response completion"
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"console.error('[Hook] Session ending - state persisted');console.error('[Hook] If this session had useful patterns, consider running /learn to extract them')\""
+          }
+        ],
+        "description": "Persist session state and suggest learn command"
+      }
+    ]
+  }
+}

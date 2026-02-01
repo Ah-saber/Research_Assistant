@@ -1,0 +1,13 @@
+{
+  "name": "research-assistant",
+  "version": "1.0.0",
+  "description": "Personal academic assistant for computer vision scholars",
+  "author": {
+    "name": "Your Name"
+  },
+  "homepage": "https://github.com/yourusername/Research_Assistant",
+  "repository": "https://github.com/yourusername/Research_Assistant",
+  "license": "MIT",
+  "keywords": ["research-assistant", "zotero", "obsidian", "academic"],
+  "skills": ["./skills/", "./commands/"]
+}
