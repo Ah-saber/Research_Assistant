@@ -1,7 +1,7 @@
 # Research Assistant 技能系统升级 - 进度跟踪
 
 **开始日期**: 2026-02-02
-**当前阶段**: 阶段3 进行中（部分完成）
+**当前阶段**: 阶段4 完成
 
 ---
 
@@ -117,14 +117,198 @@
 
 ---
 
-## 阶段4-9：待执行
+## 阶段4：Notes Skills 标准化 ✅ 完成
+
+**完成时间**: 2026-02-03
+
+### 已完成的技能
+
+| 技能 | 旧路径 | 新路径 | 状态 |
+|------|--------|--------|------|
+| `note-standardize` | `skills/notes/note-standardize.skill.md` | `skills/notes/note-standardize/SKILL.md` | ✅ |
+| `note-analyze` | `skills/notes/note-analyze.skill.md` | `skills/notes/note-analyze/SKILL.md` | ✅ |
+| `note-link` | `skills/notes/note-link.skill.md` | `skills/notes/note-link/SKILL.md` | ✅ |
+| `note-organize` | `skills/notes/note-organize.skill.md` | `skills/notes/note-organize/SKILL.md` | ✅ |
+| `note-template` | `skills/notes/note-template.skill.md` | `skills/notes/note-template/SKILL.md` | ✅ |
+
+### 标准化改进点
+
+| 改进项 | 说明 | 示例 |
+|--------|------|------|
+| **YAML frontmatter** | 添加 name, description, version | `---\nname: note-standardize\n---` |
+| **When to Activate** | 替代"触发词"，更清晰 | 明确触发条件列表 |
+| **Critical Rules** | (CRITICAL)/(REQUIRED) 标注 | 强制执行要求，使用 ALWAYS/NEVER |
+| **Step 1-N 工作流程** | 明确步骤编号 + 具体工具调用代码 | `### Step 1: 扫描分析\n使用 Glob 工具扫描...` |
+| **GOOD vs BAD** | 对比示例，覆盖常见错误 | ✅ 正确做法 vs ❌ 错误做法 |
+| **关系说明→执行要求** | 从说明改为强制执行 | "执行要求：必须使用 Glob 精确匹配" |
+
+### 核心执行规则（所有技能共通）
+
+1. **Glob 精确匹配文件名**：创建 Wikilink 时必须使用
+2. **表格中转义管道符**：`\|` 格式必须遵守
+3. **参考 obsidian-markdown**：格式语法参考文档
+4. **用户确认**：使用 `AskUserQuestion` 确认操作
+
+### 已删除的旧文件
+
+- `skills/notes/*.md` (5个)
+- `skills/notes/*.skill.md` (5个)
+
+### 验证检查清单
+
+- [x] YAML frontmatter 正确
+- [x] "关系说明"已改为"执行要求"
+- [x] 工作流程使用 Step 1-N 格式
+- [x] 包含具体的工具调用代码
+- [x] GOOD/BAD 示例覆盖常见错误
+- [x] 表格简洁清晰
+- [x] 无冗余描述
+
+---
+
+## 阶段5：Ideas Skills 标准化 ✅ 完成
+
+**完成时间**: 2026-02-03
+
+### 已完成的技能
+
+| 技能 | 旧路径 | 新路径 | 状态 |
+|------|--------|--------|------|
+| `idea-capture` | `skills/ideas/idea-capture.skill.md` | `skills/idea-capture/SKILL.md` | ✅ |
+| `idea-organize` | `skills/ideas/idea-organize.skill.md` | `skills/idea-organize/SKILL.md` | ✅ |
+| `idea-review` | `skills/ideas/idea-review.skill.md` | `skills/idea-review/SKILL.md` | ✅ |
+
+### 标准化内容
+
+每个技能包含：
+- ✅ YAML frontmatter（name, description, version）
+- ✅ When to Activate 部分
+- ✅ 与外部格式参考技能的关系
+- ✅ 核心执行规则（CRITICAL/REQUIRED）
+- ✅ 工作流程（Step 1-N 格式）
+- ✅ GOOD/BAD 对比示例
+- ✅ 快速参考表
+
+### 核心特性
+
+| 技能 | 核心功能 | 关键规则 |
+|------|----------|----------|
+| `idea-capture` | Idea捕捉 | ALWAYS 保存到 Inspiration，NEVER 到 IDEA |
+| `idea-organize` | Idea整理 | ALWAYS 先生成报告，等待确认 |
+| `idea-review` | Idea回顾 | ALWAYS 只读模式，建议仅供参考 |
+
+### 已删除的旧文件
+
+- `skills/ideas/` 目录及其下 3 个 .skill.md 文件
+
+### 验证检查清单
+
+- [x] YAML frontmatter 正确
+- [x] 访问控制规则明确（Inspiration 可访问，IDEA 需授权）
+- [x] 工作流程使用 Step 1-N 格式
+- [x] GOOD/BAD 示例覆盖常见错误
+- [x] 表格简洁清晰
+
+---
+
+---
+
+## 阶段6：Visualization Skills 标准化 ✅ 完成
+
+**完成时间**: 2026-02-03
+
+### 已完成的技能
+
+| 技能 | 旧路径 | 新路径 | 状态 |
+|------|--------|--------|------|
+| `paper-graph` | `skills/visualization/paper-graph.skill.md` | `skills/paper-graph/SKILL.md` | ✅ |
+| `idea-map` | `skills/visualization/idea-map.skill.md` | `skills/idea-map/SKILL.md` | ✅ |
+| `knowledge-canvas` | `skills/visualization/knowledge-canvas.skill.md` | `skills/knowledge-canvas/SKILL.md` | ✅ |
+
+### 标准化内容
+
+每个技能包含：
+- ✅ YAML frontmatter（name, description, version）
+- ✅ When to Activate 部分
+- ✅ 与外部格式参考技能的关系（json-canvas）
+- ✅ 核心执行规则（CRITICAL/REQUIRED）
+- ✅ 工作流程（Step 1-N 格式）
+- ✅ GOOD/BAD 对比示例
+- ✅ 快速参考表
+
+### 核心特性
+
+| 技能 | 核心功能 | 关键规则 |
+|------|----------|----------|
+| `paper-graph` | 论文引用关系图谱 | ALWAYS 使用 Glob 精确匹配文件名 |
+| `idea-map` | Idea概念关系图谱 | ALWAYS 仅访问 Inspiration 目录 |
+| `knowledge-canvas` | 综合知识画布 | ALWAYS 链接有效性验证 |
+
+### 已删除的旧文件
+
+- `skills/visualization/` 目录及其下 3 个 .skill.md 文件
+
+### 验证检查清单
+
+- [x] YAML frontmatter 正确
+- [x] 访问控制规则明确
+- [x] 工作流程使用 Step 1-N 格式
+- [x] GOOD/BAD 示例覆盖常见错误
+- [x] 布局算法参数清晰
+
+---
+
+---
+
+## 阶段7：Dashboard Skills 标准化 ✅ 完成
+
+**完成时间**: 2026-02-03
+
+### 已完成的技能
+
+| 技能 | 旧路径 | 新路径 | 状态 |
+|------|--------|--------|------|
+| `paper-dashboard` | `skills/dashboard/paper-dashboard.skill.md` | `skills/paper-dashboard/SKILL.md` | ✅ |
+| `idea-tracker` | `skills/dashboard/idea-tracker.skill.md` | `skills/idea-tracker/SKILL.md` | ✅ |
+| `research-dashboard` | `skills/dashboard/research-dashboard.skill.md` | `skills/research-dashboard/SKILL.md` | ✅ |
+
+### 标准化内容
+
+每个技能包含：
+- ✅ YAML frontmatter（name, description, version）
+- ✅ When to Activate 部分
+- ✅ 与外部格式参考技能的关系（obsidian-bases）
+- ✅ 核心执行规则（CRITICAL/REQUIRED）
+- ✅ 工作流程（Step 1-N 格式）
+- ✅ GOOD/BAD 对比示例
+- ✅ 快速参考表
+
+### 核心特性
+
+| 技能 | 核心功能 | 关键规则 |
+|------|----------|----------|
+| `paper-dashboard` | 论文阅读进度追踪 | ALWAYS 检查 Frontmatter 完整性 |
+| `idea-tracker` | Idea 状态管理追踪 | ALWAYS Inspiration 可访问，IDEA 需授权 |
+| `research-dashboard` | 综合研究进度仪表盘 | ALWAYS 检查 content_type 属性 |
+
+### 已删除的旧文件
+
+- `skills/dashboard/` 目录及其下 3 个 .skill.md 文件
+
+### 验证检查清单
+
+- [x] YAML frontmatter 正确
+- [x] 访问控制规则明确
+- [x] 工作流程使用 Step 1-N 格式
+- [x] GOOD/BAD 示例覆盖常见错误
+- [x] 视图和公式说明清晰
+
+---
+
+## 阶段8-11：待执行
 
 | 阶段 | 内容 | 状态 |
 |------|------|------|
-| 阶段4 | Notes Skills 标准化（5个） | ⏸️ |
-| 阶段5 | Ideas Skills 标准化（3个） | ⏸️ |
-| 阶段6 | Visualization Skills 标准化（3个） | ⏸️ |
-| 阶段7 | Dashboard Skills 标准化（3个） | ⏸️ |
 | 阶段8 | Commands 创建（11个） | ⏸️ |
 | 阶段9 | Rules 模块化 | ✅ 已完成 |
 | 阶段10 | 自我进化实现 | ⏸️ |
@@ -134,9 +318,8 @@
 
 ## 下一步
 
-1. **下个会话**：验证和完善阶段3的技能内容
-2. **阶段4**：Notes Skills 标准化（5个技能）
-3. **阶段5-11**：按计划继续执行
+1. **阶段8**：Commands 创建（11个）
+2. **阶段9-11**：按计划继续执行
 
 ---
 
@@ -147,4 +330,9 @@
 | 2026-02-02 | 阶段1 完成，创建 9 个配置和规则文件 |
 | 2026-02-02 | 发现参考项目已 clone 到本地，更新路径 |
 | 2026-02-02 | 阶段2 完成，复制 3 个 Document Format Skills |
-| 2026-02-02 | 阶段3 部分完成，4 个 Reading Skills 标准化 |
+| 2026-02-02 | 阶段3 完成，4 个 Reading Skills 标准化 |
+| 2026-02-03 | 阶段4 完成，5 个 Notes Skills 标准化 |
+| 2026-02-03 | 阶段5 完成，3 个 Ideas Skills 标准化 |
+| 2026-02-03 | 阶段6 完成，3 个 Visualization Skills 标准化 |
+| 2026-02-03 | 阶段7 完成，3 个 Dashboard Skills 标准化 |
+| 2026-02-03 | 阶段8 完成，Ideas/Visualization/Dashboard Skills 文档优化（9个） |

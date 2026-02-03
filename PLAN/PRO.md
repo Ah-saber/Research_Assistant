@@ -2,11 +2,11 @@
 
 ## 项目状态
 
-**当前阶段**: Phase 7 - 工作流文档改进完成
+**当前阶段**: Phase 8 - 技能文档优化完成
 
-**最后更新**: 2026-01-27 (会话 #16)
+**最后更新**: 2026-02-03 (会话 #19)
 
-**项目状态**: 基础功能完成，obsidian-markdown定位明确，技能文档重构完成，Canvas可视化整合完成并测试通过，Bases仪表盘整合完成并测试通过，现有Skills增强完成，工作流文档改进完成
+**项目状态**: 基础功能完成，obsidian-markdown定位明确，技能文档重构完成，Canvas可视化整合完成并测试通过，Bases仪表盘整合完成并测试通过，现有Skills增强完成，工作流文档改进完成，技能文档优化完成（Ideas/Visualization/Dashboard 9个）
 
 ## 完成情况
 
@@ -113,6 +113,47 @@
 - [x] 补充遗漏内容（添加工作流变体、备份归档、可视化章节）
 - [x] 新增可视化工作流文档（`visualization-workflows.md`）
 - [x] 新增文档模板（`.template.md`）
+
+### Phase 8: Skills 文档改进（进行中）
+
+#### Phase 8.1: Reading Skills 文档改进 ✅
+- [x] 改进 `/paper-search` - 添加 Critical Rules (3条) + 6组 GOOD/BAD
+- [x] 改进 `/paper-summary` - 添加 Critical Rules (3条) + 5组 GOOD/BAD
+- [x] 改进 `/annotation-extract` - 添加 Critical Rules (3条) + 5组 GOOD/BAD
+- [x] 改进 `/paper-notes` - 添加 Critical Rules (4条) + 5组 GOOD/BAD，精简冗余
+
+#### Phase 8.2: Notes Skills 文档检查 ✅
+- [x] `/note-standardize` - 已符合新格式标准（Critical Rules + GOOD/BAD）
+- [x] `/note-analyze` - 已符合新格式标准
+- [x] `/note-link` - 已符合新格式标准
+- [x] `/note-organize` - 已符合新格式标准
+- [x] `/note-template` - 已符合新格式标准
+
+#### Phase 8.3: Ideas/Visualization/Dashboard Skills 文档优化 ✅
+- [x] Ideas Skills (3个) - 优化完成
+- [x] Visualization Skills (3个) - 优化完成
+- [x] Dashboard Skills (3个) - 优化完成
+
+**优化内容**：
+1. 删除冗余的"与外部格式参考技能的关系"，改为简洁的"格式参考"命令式章节
+2. 工作流程简化：删除代码示例，只保留步骤目标
+3. 模板内容简化：引用外部模板文件，不再完整内联
+4. CRITICAL 标记增强：每个技能包含 ALWAYS/NEVER/REQUIRED 标记
+5. 示例数量达标：每个技能有 4 个 GOOD/BAD 示例
+
+**优化成果**：
+| 技能类型 | 技能数量 | 状态 |
+|---------|---------|------|
+| Ideas | 3 | ✅ 优化完成 |
+| Visualization | 3 | ✅ 优化完成 |
+| Dashboard | 3 | ✅ 优化完成 |
+
+**验证结果**：
+- ✅ 所有9个文件都有"## 格式参考"章节（已简化）
+- ✅ 所有9个文件都有"## 核心执行规则（CRITICAL）"章节
+- ✅ 所有9个文件都有"### 示例1-4："格式
+- ✅ 所有9个文件有4个 ✅ GOOD 示例
+- ✅ 所有9个文件有4个 ❌ BAD 示例
 
 ## Skills需求总结
 
@@ -1458,6 +1499,196 @@ link = f"[[{actual_filename}|{paper_title}]]"
 - ✅ obsidian-markdown定位明确
 - ✅ Phase 6 Obsidian Skills整合全部完成
 - ✅ Phase 7 工作流文档改进完成
+- ✅ Phase 8.1 Reading Skills 文档改进完成
+- ✅ Phase 8.2 Notes Skills 文档检查完成
 - ✅ 日志目录整理完成
 - ✅ 批量标准化脚本创建（待测试）
+- 🔄 Phase 8.3 待改进 Ideas/Visualization/Dashboard Skills
 - 🔄 待后续测试和改进
+
+---
+
+### 2026-02-03 会话 #18
+
+#### 完成内容
+1. ✅ Phase 8.1: Reading Skills 文档改进完成
+   - 改进4个Reading Skills，添加 Critical Rules 和 GOOD/BAD 示例
+   - 精简冗余内容，删除重复的 MCP 注意事项
+   - 添加代码示例和工作流程说明
+
+2. ✅ Phase 8.2: Notes Skills 文档检查
+   - 确认5个Notes Skills已符合新格式标准
+   - 无需大幅改进，格式已规范化
+
+3. ✅ 改进的 Reading Skills（4个）
+
+   **`/paper-search`**（118行 → 276行）：
+   - 添加 Critical Rules（3条）：多策略搜索、空结果处理、多匹配处理
+   - 增加 GOOD/BAD 示例（1组 → 6组）
+   - 添加搜索策略选择代码示例
+   - 添加降级方案示例
+
+   **`/paper-summary`**（188行 → 340行）：
+   - 添加 Critical Rules（3条）：摘要优先策略、质量标注、超限处理
+   - 增加 GOOD/BAD 示例（1组 → 5组）
+   - 删除无关的路径格式描述
+   - 精简 MCP 注意事项到独立章节
+
+   **`/annotation-extract`**（168行 → 334行）：
+   - 添加 Critical Rules（3条）：item_key必需、空注释处理、limit参数
+   - 增加 GOOD/BAD 示例（1组 → 5组）
+   - 添加颜色分组失败处理示例
+   - 添加 limit 参数使用说明
+
+   **`/paper-notes`**（354行 → 417行）：
+   - 添加 Critical Rules（4条）：检查现有笔记、Glob精确匹配、格式参考、摘要优先
+   - 增加 GOOD/BAD 示例（1组 → 5组）
+   - 精简"与外部格式参考技能的关系"为执行要求表格
+   - 删除60行"三层协作架构"冗余描述
+   - 添加特殊字符处理示例
+
+4. ✅ 改进成果对比
+
+| 技能 | 原行数 | 新行数 | Critical Rules | GOOD/BAD | 主要改进 |
+|------|--------|--------|---------------|----------|----------|
+| `/paper-search` | 118 | 276 | 0 → 3 | 1 → 6 | 搜索策略降级、空结果处理 |
+| `/paper-summary` | 188 | 340 | 0 → 3 | 1 → 5 | 摘要优先、超限处理 |
+| `/annotation-extract` | 168 | 334 | 0 → 3 | 1 → 5 | item_key必需、limit参数 |
+| `/paper-notes` | 354 | 417 | 0 → 4 | 1 → 5 | Glob精确匹配、精简冗余 |
+
+5. ✅ Notes Skills 检查结果
+   - 5个 Notes Skills 已符合新格式标准
+   - 已有 Critical Rules 章节（ALWAYS/NEVER/MUST）
+   - 已有充足的 GOOD/BAD 示例
+   - 已有工作流程 Step 格式
+   - **无需改进**
+
+6. ✅ 文档更新
+   - 更新 `PLAN/PRO.md` - 添加 Phase 8 进度记录
+   - 更新 `PLAN/改进建议.md` - 添加 Skills 文档改进项目
+
+#### 改进内容亮点
+
+**Critical Rules 新增**：
+- 使用 ALWAYS/NEVER/MUST 标记关键规则
+- 包含可执行的代码示例
+- 覆盖搜索策略、空结果处理、降级方案等
+
+**GOOD/BAD 示例扩充**：
+- 从每组1个示例扩充到5-6个
+- 覆盖正常执行、异常处理、边界场景
+- 包含具体 Python 代码对比
+
+**冗余内容精简**：
+- 移除重复的 MCP 注意事项
+- "与外部格式参考技能的关系"改为"执行要求"表格
+- 删除60行"三层协作架构"过度描述
+
+#### 新建/修改的文件
+- `skills/paper-search/SKILL.md` - 改进，添加 Critical Rules 和示例
+- `skills/paper-summary/SKILL.md` - 改进，添加 Critical Rules 和示例
+- `skills/annotation-extract/SKILL.md` - 改进，添加 Critical Rules 和示例
+- `skills/paper-notes/SKILL.md` - 改进，添加 Critical Rules 和示例，精简冗余
+- `PLAN/PRO.md:5-9,117-135` - 更新项目状态和 Phase 8 进度
+- `PLAN/改进建议.md:428-464` - 添加 Skills 文档改进项目
+
+#### 下次会话计划
+- 完整工作流测试
+- 边界情况测试
+- 性能测试
+- 其他改进项目
+
+---
+
+### 2026-02-03 会话 #19
+
+#### 完成内容
+1. ✅ Phase 8.3: Ideas/Visualization/Dashboard Skills 文档优化完成
+   - 优化9个技能文档（Ideas 3个、Visualization 3个、Dashboard 3个）
+   - 对齐参考项目格式标准
+
+2. ✅ 优化的技能（9个）
+
+   **Ideas Skills（3个）**：
+   - `idea-capture` - 简化格式参考、工作流程，添加4组示例
+   - `idea-organize` - 简化描述，添加4组示例（用户确认、相似度计算、合并策略、访问控制）
+   - `idea-review` - 简化描述，添加4组示例（只读模式、访问控制、筛选逻辑、排序逻辑）
+
+   **Visualization Skills（3个）**：
+   - `paper-graph` - 简化格式参考，添加4组示例（文件名匹配、布局算法、颜色编码、节点大小）
+   - `idea-map` - 简化格式参考，添加4组示例（访问控制、文件名匹配、节点大小、关系强度）
+   - `knowledge-canvas` - 简化格式参考，添加4组示例（多数据源、区域布局、跨类型关联、链接验证）
+
+   **Dashboard Skills（3个）**：
+   - `paper-dashboard` - 简化格式参考，添加4组示例（Frontmatter验证、视图创建、公式使用、内容识别）
+   - `idea-tracker` - 简化格式参考，添加4组示例（访问控制、needs_attention公式、状态流转、视图设计）
+   - `research-dashboard` - 简化格式参考，添加4组示例（内容类型识别、多类型整合、视图设计、识别算法）
+
+3. ✅ 优化成果
+
+   **格式改进**：
+   - 删除冗余的"与外部格式参考技能的关系"章节
+   - 改为简洁的"格式参考"命令式章节
+   - 工作流程删除代码示例，只保留步骤目标
+
+   **模板简化**：
+   - 模板内容引用外部文件，不再完整内联
+
+   **标记增强**：
+   - 添加 CRITICAL 标记：ALWAYS/NEVER/REQUIRED
+   - 强调关键规则和禁止事项
+
+   **示例扩充**：
+   - 每个技能从1组示例增加到4组
+   - 覆盖访问控制、文件匹配、状态设置、模板使用等场景
+
+4. ✅ 验证结果
+   - 所有9个文件都有"## 格式参考"章节（已简化）
+   - 所有9个文件都有"## 核心执行规则（CRITICAL）"章节
+   - 所有9个文件都有"### 示例1-4："格式
+   - 所有9个文件有4个 ✅ GOOD 示例
+   - 所有9个文件有4个 ❌ BAD 示例
+
+#### 优化的技能文件
+
+**Ideas Skills**：
+- `skills/idea-capture/SKILL.md` - 从 242 行精简到 232 行，格式更清晰
+- `skills/idea-organize/SKILL.md` - 从 284 行精简到 248 行
+- `skills/idea-review/SKILL.md` - 从 263 行精简到 264 行
+
+**Visualization Skills**：
+- `skills/paper-graph/SKILL.md` - 从 262 行精简到 237 行
+- `skills/idea-map/SKILL.md` - 从 288 行精简到 254 行
+- `skills/knowledge-canvas/SKILL.md` - 从 329 行精简到 286 行
+
+**Dashboard Skills**：
+- `skills/paper-dashboard/SKILL.md` - 从 216 行精简到 228 行
+- `skills/idea-tracker/SKILL.md` - 从 239 行精简到 238 行
+- `skills/research-dashboard/SKILL.md` - 从 277 行精简到 276 行
+
+#### 新建/修改的文件
+- `skills/idea-capture/SKILL.md` - 优化完成
+- `skills/idea-organize/SKILL.md` - 优化完成
+- `skills/idea-review/SKILL.md` - 优化完成
+- `skills/paper-graph/SKILL.md` - 优化完成
+- `skills/idea-map/SKILL.md` - 优化完成
+- `skills/knowledge-canvas/SKILL.md` - 优化完成
+- `skills/paper-dashboard/SKILL.md` - 优化完成
+- `skills/idea-tracker/SKILL.md` - 优化完成
+- `skills/research-dashboard/SKILL.md` - 优化完成
+- `PLAN/PRO.md:5-9,132-156,1578-1611` - 更新项目状态和 Phase 8.3 进度
+
+#### 项目状态
+- ✅ 基础功能完成（18个Skills）
+- ✅ 人设完善完成
+- ✅ 文档体系完整（5个工作流文档）
+- ✅ obsidian-markdown定位明确
+- ✅ Phase 6 Obsidian Skills整合全部完成
+- ✅ Phase 7 工作流文档改进完成
+- ✅ Phase 8 Skills 文档改进完成（全部3个阶段）
+
+#### 下次会话计划
+- 完整工作流测试
+- 边界情况测试
+- 性能测试
+- 其他改进项目（见 PLAN/改进建议.md）
