@@ -9,5 +9,11 @@
   "repository": "https://github.com/yourusername/Research_Assistant",
   "license": "MIT",
   "keywords": ["research-assistant", "zotero", "obsidian", "academic"],
-  "skills": ["./skills/", "./commands/"]
+  "skills": [".claude/skills/"],
+  "agents": [
+    ".claude/agents/literature-synthesizer.md",
+    ".claude/agents/note-organizer.md",
+    ".claude/agents/research-note-generator.md",
+    ".claude/agents/note-visualizer.md"
+  ]
 }

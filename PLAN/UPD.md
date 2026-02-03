@@ -1,23 +1,22 @@
 # Research Assistant 技能系统升级实施计划
 
-**版本**: v1.1
+**版本**: v1.2
 **创建日期**: 2026-02-02
-**参考项目**: everything-claude-code
-**参考项目路径**: `D:\work_project\my_project\Ref_pro\everything-claude-code\`
+**最后更新**: 2026-02-03
 
 ---
 
 ## 一、项目概述
 
-基于 `everything-claude-code` 参考项目，对 Research Assistant 的技能系统进行标准化升级：
+Research Assistant 技能系统标准化升级，完成以下内容：
 
 1. **格式标准化**：添加 YAML frontmatter，统一文件名为 SKILL.md
 2. **插件配置**：创建 `plugin.json` 支持插件化分发
-3. **Commands 系统**：创建快捷命令封装常用工作流
-4. **Hooks 自动化**：实现自动化触发机制
-5. **Rules 模块化**：将 CLAUDE.md 拆分为模块化规则
-6. **Document Format Skills**：创建外部格式参考技能
-7. **自我进化**：支持从会话中提取模式的能力
+3. **Hooks 自动化**：实现自动化触发机制
+4. **Rules 模块化**：将 CLAUDE.md 拆分为模块化规则
+5. **Document Format Skills**：创建格式参考技能（3个）
+6. **Agents 系统**：按需引入专业 Agents（4个）
+7. **文档独立化**：移除外部项目引用，文档独立自洽
 
 ---
 
@@ -37,11 +36,19 @@
 
 ```
 Research_Assistant/
-├── .claude-plugin/
-│   ├── plugin.json              # 新建：插件清单
-│   └── PLUGIN_SCHEMA_NOTES.md   # 新建：约束说明
-│
-├── skills/                      # 重构：扁平化
+├── .claude/
+│   ├── skills/                  # 21 个技能（扁平化）
+│   │
+│   │─── 格式参考技能 (3个)
+│   ├── obsidian-markdown/SKILL.md     # Obsidian Markdown 格式参考
+│   ├── json-canvas/SKILL.md           # Canvas (.canvas) 格式参考
+│   ├── obsidian-bases/SKILL.md        # Bases (.base) 格式参考
+│   │
+│   │─── Reading Skills (4个)
+│   ├── paper-search/SKILL.md
+│   ├── paper-summary/SKILL.md
+│   ├── annotation-extract/SKILL.md
+│   ├── paper-notes/SKILL.md
 │   │
 │   │─── Notes Skills (5个)
 │   ├── note-analyze/SKILL.md
@@ -49,12 +56,6 @@ Research_Assistant/
 │   ├── note-standardize/SKILL.md
 │   ├── note-template/SKILL.md
 │   ├── note-link/SKILL.md
-│   │
-│   │─── Reading Skills (4个)
-│   ├── paper-search/SKILL.md
-│   ├── paper-summary/SKILL.md
-│   ├── annotation-extract/SKILL.md
-│   ├── paper-notes/SKILL.md
 │   │
 │   │─── Ideas Skills (3个)
 │   ├── idea-capture/SKILL.md
@@ -69,58 +70,51 @@ Research_Assistant/
 │   │─── Dashboard Skills (3个)
 │   ├── paper-dashboard/SKILL.md
 │   ├── idea-tracker/SKILL.md
-│   ├── research-dashboard/SKILL.md
-│   │
-│   │─── Document Format Skills (格式参考技能 - 新建)
-│   │     这些技能提供格式规范文档，供其他技能参考
-│   ├── obsidian-markdown/SKILL.md     # Obsidian Markdown 格式参考
-│   ├── json-canvas/SKILL.md           # Canvas (.canvas) 格式参考
-│   ├── obsidian-bases/SKILL.md        # Bases (.base) 格式参考
-│   │
-│   │─── Self-Evolution
-│   └── continuous-learning/
-│       ├── SKILL.md                   # 自我进化技能
-│       └── config.json                # 配置文件
+│   └── research-dashboard/SKILL.md
 │
-├── commands/                    # 新建：快捷命令
-│   ├── search-paper.md
-│   ├── create-paper-note.md
-│   ├── standardize-notes.md
-│   ├── analyze-notes.md
-│   ├── organize-notes.md
-│   ├── link-notes.md
-│   ├── capture-idea.md
-│   ├── review-ideas.md
-│   ├── organize-ideas.md
-│   ├── learn.md
-│   └── evolve.md
+│   ├── agents/                  # 4 个专业 Agents
+│   ├── literature-synthesizer.md
+│   ├── note-organizer.md
+│   ├── research-note-generator.md
+│   └── note-visualizer.md
 │
-├── hooks/                       # 新建：自动化触发
-│   └── hooks.json
+│   └── rules/                   # 模块化规则
+│       ├── agents.md
+│       ├── coding-style.md
+│       ├── hooks.md
+│       ├── workflow.md
+│       ├── zotero-integration.md
+│       └── obsidian-integration.md
 │
-├── rules/                       # 新建：模块化规则
-│   ├── agents.md
-│   ├── coding-style.md
-│   ├── hooks.md
-│   ├── workflow.md
-│   ├── zotero-integration.md
-│   └── obsidian-integration.md
+├── .claude-plugin/
+│   ├── plugin.json              # 插件清单
+│   └── PLUGIN_SCHEMA_NOTES.md   # 约束说明
+│
+├── hooks/
+│   └── hooks.json               # 自动化触发配置
 │
 ├── PLAN/
-│   ├── references/              # 参考模板（保持不变）
-│   │   ├── 论文笔记参考.md
-│   │   ├── 概念笔记参考.md
-│   │   ├── 项目笔记参考.md
-│   │   └── 日志笔记参考.md
+│   ├── references/              # 参考模板
 │   ├── UPD.md
+│   ├── PRO.md
 │   └── PRO_UPD.md
+│
+├── docs/
+│   ├── workflows/               # 工作流文档
+│   └── guides/                  # 使用指南
+│
+├── scripts/                     # 辅助脚本
+├── CLAUDE.md                    # AI 助理工作指南
+├── PERSONA.md                   # AI 人设文档
+└── README.md
 ```
 
 **关键说明**：
-- **Document Format Skills** 是**格式参考技能**，提供对应格式的语法规范文档
+- **Document Format Skills** (3个) 是**格式参考技能**，提供对应格式的语法规范文档
 - 这些技能不执行文件操作，而是作为其他技能的格式参考
 - 例如：`/note-standardize` 创建 Callout 时参考 `obsidian-markdown` 的语法
 - 例如：`/paper-graph` 创建 Canvas 时参考 `json-canvas` 的格式
+- **Agents** (4个) 按需引入，处理需要大量上下文或自主决策的复杂任务
 
 ---
 
@@ -317,64 +311,63 @@ date: YYYY-MM-DD
   "repository": "https://github.com/yourusername/Research_Assistant",
   "license": "MIT",
   "keywords": ["research-assistant", "zotero", "obsidian", "academic"],
-  "skills": ["./skills/", "./commands/"]
+  "skills": [".claude/skills/"],
+  "agents": [
+    "./agents/literature-synthesizer.md",
+    "./agents/note-organizer.md",
+    "./agents/research-note-generator.md",
+    "./agents/note-visualizer.md"
+  ]
 }
 ```
 
 **重要约束**：
 - ✅ `version` 字段必需
-- ✅ `skills` 必须是数组
+- ✅ `skills` 必须是数组，使用 `.claude/skills/` 路径
+- ✅ `agents` 显式枚举，使用相对路径
 - ❌ 不添加 `hooks` 字段（自动加载）
-- ❌ 不使用 `agents` 字段（本项目不需要）
 
 ---
 
 ## 五、分阶段实施计划
 
-### 阶段1：基础架构（第1天）
+### 阶段1：基础架构 ✅ 完成
 
 **目标**：建立标准化的目录结构和配置
 
-#### 1.1 创建目录结构
+#### 1.1 创建目录结构 ✅
 ```bash
-mkdir -p .claude-plugin
-mkdir -p commands
-mkdir -p hooks
-mkdir -p rules
+.claude/
+├── skills/      # 21 个技能
+├── agents/      # 4 个代理
+└── rules/       # 6 个规则文件
 ```
 
-#### 1.2 创建 plugin.json
+#### 1.2 创建 plugin.json ✅
 - 路径：`.claude-plugin/plugin.json`
-- 内容：按上述标准格式
-- 关键点：skills 路径包含 `./skills/` 和 `./commands/`
+- skills 路径：`.claude/skills/`
+- agents：显式枚举 4 个 Agent
 
-#### 1.3 创建 PLUGIN_SCHEMA_NOTES.md
+#### 1.3 创建 PLUGIN_SCHEMA_NOTES.md ✅
 - 路径：`.claude-plugin/PLUGIN_SCHEMA_NOTES.md`
-- 内容：约束说明（version 必需、paths 是数组、不添加 hooks）
+- 约束说明：version 必需、agents 显式枚举
 
-#### 1.4 创建 hooks/hooks.json
-- 路径：`hooks/hooks.json`
-- 初始场景：
-  - `PostToolWrite`: 笔记格式检查
-  - `PostToolEdit`: 格式化建议
-  - `SessionEnd`: 持久化状态
+#### 1.4 创建 hooks/hooks.json ✅
+- PreToolUse：警告创建随机 .md 文件、提醒激活 Python 虚拟环境
+- PostToolUse：检查 Wikilink 格式、建议笔记标准化
+- SessionEnd：持久化会话状态
 
-#### 1.5 创建 rules/ 目录文件
-- `rules/agents.md`：Agent 相关规则
-- `rules/coding-style.md`：代码风格规范
-- `rules/hooks.md`：Hooks 使用说明
+#### 1.5 创建 rules/ 目录文件 ✅
+- `rules/agents.md`：Agent 规则
+- `rules/coding-style.md`：代码风格
+- `rules/hooks.md`：Hooks 说明
 - `rules/workflow.md`：工作流规范
-- `rules/zotero-integration.md`：Zotero 集成规范
-- `rules/obsidian-integration.md`：Obsidian 集成规范
-
-**验证标准**：
-- [ ] plugin.json 格式正确
-- [ ] hooks.json 格式正确
-- [ ] 目录结构完整
+- `rules/zotero-integration.md`：Zotero 集成
+- `rules/obsidian-integration.md`：Obsidian 集成
 
 ---
 
-### 阶段2：创建 Document Format Skills（第2天）
+### 阶段2：创建 Document Format Skills ✅ 完成
 
 **优先级**：P0（最高，其他技能依赖这些格式参考）
 
@@ -383,7 +376,7 @@ mkdir -p rules
 2. `json-canvas` - Canvas (.canvas) 格式参考
 3. `obsidian-bases` - Bases (.base) 格式参考
 
-#### 2.1 创建 obsidian-markdown/SKILL.md
+#### 2.1 创建 obsidian-markdown/SKILL.md ✅
 
 **内容结构**：
 - Wikilink 语法（基本、表格转义、精确匹配）
@@ -415,7 +408,7 @@ if matches:
 ```
 ```
 
-#### 2.2 创建 json-canvas/SKILL.md
+#### 2.2 创建 json-canvas/SKILL.md ✅
 
 **内容结构**：
 - Canvas 文件结构
@@ -423,8 +416,6 @@ if matches:
 - 边类型（实线、虚线、点线）
 - 颜色编码
 - 布局算法
-
-**示例内容**：
 ```markdown
 ## Canvas 文件结构
 
@@ -464,7 +455,7 @@ if matches:
 | 绿色 | 应用 | "4" |
 ```
 
-#### 2.3 创建 obsidian-bases/SKILL.md
+#### 2.3 创建 obsidian-bases/SKILL.md ✅
 
 **内容结构**：
 - Base 文件结构
@@ -472,8 +463,6 @@ if matches:
 - 公式（状态转换、数据计算）
 - 分组排序
 - 统计汇总
-
-**示例内容**：
 ```markdown
 ## 视图类型
 
@@ -508,20 +497,63 @@ views:
 ```
 
 **验证标准**：
-- [ ] 3个格式参考技能创建完成
-- [ ] YAML frontmatter 正确
-- [ ] 语法规范完整准确
-- [ ] 示例代码正确
+- [x] 3个格式参考技能创建完成
+- [x] YAML frontmatter 正确
+- [x] 语法规范完整准确
+- [x] 示例代码正确
 
 ---
 
-### 阶段3-9：（本次会话不执行）
+### 阶段3-10：技能标准化 ✅ 完成
 
-略，详见完整计划
+详见 `PLAN/PRO_UPD.md` 进度文档。
+
+**完成内容**：
+- 阶段3：Reading Skills 标准化（4个）
+- 阶段4：Notes Skills 标准化（5个）
+- 阶段5：Ideas Skills 标准化（3个）
+- 阶段6：Visualization Skills 标准化（3个）
+- 阶段7：Dashboard Skills 标准化（3个）
+- 阶段8：技能描述优化（18个）
+- 阶段9：架构升级 v2.0
+- 阶段10：创建 Agents（4个）
 
 ---
 
-## 六、已完成的会话执行范围
+## 六、文档优化 ✅ 完成
+
+### 更新的文件（会话 #20）
+
+| 文件 | 变化 | 说明 |
+|------|------|------|
+| CLAUDE.md | 659→258 行 (-61%) | 移除冗余，保留核心要点 |
+| agents.md | -4 行 | 移除外部项目引用 |
+| coding-style.md | -5 行 | 移除外部项目引用 |
+| obsidian-integration.md | -1 行 | 移除外部项目引用 |
+| zotero-integration.md | 路径更新 | 移除外部项目引用 |
+| hooks.md | -7 行 | 移除外部项目引用 |
+| UPD.md | 本文件 | 移除外部项目引用 |
+
+### 优化成果
+
+- ✅ 所有文档独立自洽
+- ✅ 移除所有 `Ref_pro` 外部项目路径
+- ✅ 移除所有"参考项目"表述
+- ✅ 技能数量更新为 21 个
+- ✅ 路径更新为 `.claude/skills/`
+- ✅ 文件名统一为 `SKILL.md`
+
+---
+
+## 七、进度跟踪
+
+**进展文档**：`PLAN/PRO_UPD.md`
+
+各阶段完成后更新 `PRO_UPD.md`，记录：
+- 完成时间
+- 遇到的问题
+- 解决方案
+- 待完成事项
 
 ### 会话 #1 (2026-02-02)
 
@@ -529,54 +561,30 @@ views:
 - ✅ 阶段1：基础架构（目录结构、配置文件）
 - ✅ 阶段2：Document Format Skills（3个格式参考技能）
 
-### 会话 #2 (2026-02-03)
+### 会话 #2-5 (2026-02-03)
 
 **执行内容**：
-- ✅ 阶段3：Reading Skills 标准化（4个技能）
-- ✅ 阶段4：Notes Skills 标准化（5个技能）
+- ✅ 阶段3：Reading Skills 标准化（4个）
+- ✅ 阶段4：Notes Skills 标准化（5个）
+- ✅ 阶段5：Ideas Skills 标准化（3个）
+- ✅ 阶段6：Visualization Skills 标准化（3个）
+- ✅ 阶段7：Dashboard Skills 标准化（3个）
+- ✅ 阶段8：技能描述优化（18个）
 
-**不执行**：
-- ❌ 阶段5及以后：Ideas/Visualization/Dashboard Skills 标准化
-- ❌ Commands 创建
-- ❌ 自我进化实现
-
----
-
-### 会话 #3 (2026-02-03)
+### 会话 #6 (2026-02-03)
 
 **执行内容**：
-- ✅ 阶段5：Ideas Skills 标准化（3个技能）
-- ✅ 阶段6：Visualization Skills 标准化（3个技能）
-- ✅ 阶段7：Dashboard Skills 标准化（3个技能）
+- ✅ 架构升级 v2.0：纯 Skills + 选择性 Agents
+- ✅ 阶段9：技能描述优化
+- ✅ 阶段10：创建 Agents（4个）
 
----
-
-### 会话 #4 (2026-02-03)
+### 会话 #20 (2026-02-03)
 
 **执行内容**：
-- ✅ 阶段8.1：Reading Skills 文档改进（4个）
-- ✅ 阶段8.2：Notes Skills 文档检查（5个）
-
----
-
-### 会话 #5 (2026-02-03)
-
-**执行内容**：
-- ✅ 阶段8.3：Ideas/Visualization/Dashboard Skills 文档优化（9个技能）
-
-**优化内容**：
-1. 删除冗余的"与外部格式参考技能的关系"，改为简洁的"格式参考"命令式章节
-2. 工作流程简化：删除代码示例，只保留步骤目标
-3. 模板内容简化：引用外部模板文件，不再完整内联
-4. CRITICAL 标记增强：每个技能包含 ALWAYS/NEVER/REQUIRED 标记
-5. 示例数量达标：每个技能有 4 个 GOOD/BAD 示例
-
-**优化成果**：
-| 技能类型 | 技能数量 | 状态 |
-|---------|---------|------|
-| Ideas | 3 | ✅ 优化完成 |
-| Visualization | 3 | ✅ 优化完成 |
-| Dashboard | 3 | ✅ 优化完成 |
+- ✅ 文档优化：移除所有外部项目引用
+- ✅ CLAUDE.md 重构（659→258 行）
+- ✅ 规则文档清理（6个文件）
+- ✅ PLAN/UPD.md 更新（本文件）
 
 ---
 

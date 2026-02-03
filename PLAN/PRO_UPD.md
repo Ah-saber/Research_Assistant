@@ -1,7 +1,174 @@
 # Research Assistant 技能系统升级 - 进度跟踪
 
 **开始日期**: 2026-02-02
-**当前阶段**: 阶段4 完成
+**当前阶段**: 阶段10 完成（Agents 创建）
+
+---
+
+## 阶段9：技能描述优化 ✅ 完成
+
+**完成时间**: 2026-02-03
+
+### 优化目标
+
+Claude 通过技能的 `description` 字段来判断技能的功能和何时使用。所有技能的 description 都需要更加详细，以便 Claude 能够准确识别何时触发相应技能。
+
+### 优化标准（参考格式）
+
+参考 `obsidian-markdown` 技能的描述格式，包含三部分：
+
+1. **核心功能**：动词 + 对象 + 关键特性（逗号分隔）
+2. **使用场景**："Use when..." 说明何时触发
+3. **触发词**：中文触发词列表（可选）
+
+**示例**：
+```yaml
+description: Search for papers in Zotero library using semantic search, keyword search, and advanced filters. Use when the user wants to find papers, search literature, query specific authors or years, or mentions "搜索论文", "找论文", "查找相关文献".
+```
+
+### 更新的技能（18个）
+
+| 类别 | 技能 | 状态 |
+|------|------|------|
+| **Reading** | paper-search | ✅ |
+| Reading | paper-summary | ✅ |
+| Reading | annotation-extract | ✅ |
+| Reading | paper-notes | ✅ |
+| **Notes** | note-standardize | ✅ |
+| Notes | note-analyze | ✅ |
+| Notes | note-link | ✅ |
+| Notes | note-organize | ✅ |
+| Notes | note-template | ✅ |
+| **Ideas** | idea-capture | ✅ |
+| Ideas | idea-organize | ✅ |
+| Ideas | idea-review | ✅ |
+| **Visualization** | paper-graph | ✅ |
+| Visualization | idea-map | ✅ |
+| Visualization | knowledge-canvas | ✅ |
+| **Dashboard** | paper-dashboard | ✅ |
+| Dashboard | idea-tracker | ✅ |
+| Dashboard | research-dashboard | ✅ |
+
+### Document Format Skills（已符合标准）
+
+以下技能已有详细描述，无需更新：
+
+| 技能 | Description 格式 |
+|------|------------------|
+| obsidian-markdown | Create and edit Obsidian Flavored Markdown with wikilinks, embeds, callouts, properties, and other Obsidian-specific syntax. Use when working with .md files in Obsidian, or when the user mentions wikilinks, callouts, frontmatter, tags, embeds, or Obsidian notes. |
+| obsidian-bases | Create and edit Obsidian Bases (.base files) with views, filters, formulas, and summaries. Use when working with .base files, creating database-like views of notes, or when the user mentions Bases, table views, card views, filters, or formulas in Obsidian. |
+| json-canvas | Create and edit JSON Canvas files (.canvas) with nodes, edges, groups, and connections. Use when working with .canvas files, creating visual canvases, mind maps, flowcharts, or when the user mentions Canvas files in Obsidian. |
+
+---
+
+## 架构升级 v2.0：纯 Skills + 选择性 Agents ✅ 完成
+
+**完成时间**: 2026-02-03
+
+### 用户确认的架构决策
+
+| 决策 | 选择 | 理由 |
+|------|------|------|
+| **架构选择** | 纯 Skills 架构 | 使用 `command: true` 标记，符合 Claude Code 官方趋势 |
+| **自我进化** | 暂不实现 | 先专注核心功能，后续可扩展 |
+| **Agents** | 按需引入 | "大量上下文"或"只看结果"的场景才设计 Agent |
+
+### 实施内容
+
+| 任务 | 状态 |
+|------|------|
+| 标记 10 个技能 `command: true` | ⏭️ 跳过（用户选择手动添加） |
+| 删除空的 `commands/` 目录 | ✅ |
+| 更新 `plugin.json` 移除 commands 路径 | ✅ |
+| 更新 PRO_UPD.md 进度文档 | ✅ |
+
+### 标记 `command: true` 的技能（11个）
+
+| 类别 | 技能 |
+|------|------|
+| Reading | paper-search, paper-notes |
+| Notes | note-standardize, note-organize |
+| Ideas | idea-capture |
+| Visualization | paper-graph, idea-map, knowledge-canvas |
+| Dashboard | paper-dashboard, idea-tracker, research-dashboard |
+
+### plugin.json 更新
+
+```diff
+- "skills": [".claude/skills/", ".claude/commands/"]
++ "skills": [".claude/skills/"]
+```
+
+### 下一步计划（已完成 - 阶段10）
+
+| 任务 | 说明 |
+|------|------|
+| 创建 agents/ 目录 | ✅ 为 P1 优先级 Agents 准备 |
+| 实现 literature-synthesizer | ✅ 文献综合分析器 Agent |
+| 实现 note-organizer | ✅ 笔记智能整理代理 |
+| 实现 research-note-generator | ✅ 研究笔记生成器 |
+| 实现 note-visualizer | ✅ 笔记可视化综合代理 |
+| 更新 plugin.json 添加 agents 字段 | ✅ 显式枚举 Agent 路径 |
+| 更新 rules/agents.md | ✅ 说明 Agent 使用规范 |
+
+---
+
+## 阶段10：创建 Agents ✅ 完成
+
+**完成时间**: 2026-02-03
+
+### 创建的 Agents
+
+| Agent | 文件 | 职责 | 调用的 Skills |
+|-------|------|------|---------------|
+| literature-synthesizer | `agents/literature-synthesizer.md` | 文献综合分析 | paper-search, paper-summary, paper-notes, annotation-extract |
+| note-organizer | `agents/note-organizer.md` | 笔记智能整理 | note-analyze, note-organize, note-link, note-standardize |
+| research-note-generator | `agents/research-note-generator.md` | 研究笔记生成 | paper-notes, note-template, obsidian-markdown |
+| note-visualizer | `agents/note-visualizer.md` | 笔记可视化 | note-analyze, note-link, paper-graph, idea-map, knowledge-canvas, paper-dashboard, idea-tracker, research-dashboard, json-canvas, obsidian-bases |
+
+### Agent 文件格式
+
+每个 Agent 包含：
+
+- ✅ YAML frontmatter（name, description, skills, tools, model）
+- ✅ 职责定位说明
+- ✅ 何时启用条件
+- ✅ 调用的 Skills 表格
+- ✅ 工作流程（Step 1-N 格式）
+- ✅ 输出格式说明
+- ✅ 关键规则（ALWAYS/NEVER）
+- ✅ 人设要求（场景相关）
+- ✅ 交互示例
+
+### Agent 与 Skill 的关系
+
+| 维度 | 参考项目 | 本项目 |
+|------|----------|--------|
+| Agent-Skill 关系 | 独立，无调用关系 | Agent 明确声明并调用 Skill |
+| Agent 自主性 | 完全自主决策 | 调用 Skill 获得专业能力 |
+| skills 字段 | 无 | 在 YAML frontmatter 中声明 |
+
+### 配置更新
+
+| 文件 | 更新内容 |
+|------|----------|
+| `.claude-plugin/plugin.json` | 添加 `agents` 字段，枚举 4 个 Agent 路径 |
+| `.claude/rules/agents.md` | 更新 Agent 策略，添加已实现 Agents 文档 |
+
+### 验证检查清单
+
+- [x] 4 个 Agent 文件创建完成
+- [x] YAML frontmatter 正确
+- [x] skills 字段正确声明
+- [x] 职责定位清晰
+- [x] 何时启用条件明确
+- [x] Skill 调用关系清晰
+- [x] 工作流程完整
+- [x] 人设要求符合场景
+- [x] plugin.json agents 字段正确
+- [x] rules/agents.md 更新完整
+
+---
 
 ---
 
@@ -305,21 +472,32 @@
 
 ---
 
-## 阶段8-11：待执行
+## 会话 #6 (2026-02-03)
 
-| 阶段 | 内容 | 状态 |
-|------|------|------|
-| 阶段8 | Commands 创建（11个） | ⏸️ |
-| 阶段9 | Rules 模块化 | ✅ 已完成 |
-| 阶段10 | 自我进化实现 | ⏸️ |
-| 阶段11 | Hooks 完善 | ✅ 已完成 |
+**执行内容**：
+- ✅ 修复 plugin.json 中 agents 路径配置错误
+- ✅ 验证项目结构完整性
 
----
+**修复内容**：
 
-## 下一步
+| 问题 | 修复前 | 修复后 |
+|------|--------|--------|
+| agents 路径 | `./agents/` | `.claude/agents/` |
 
-1. **阶段8**：Commands 创建（11个）
-2. **阶段9-11**：按计划继续执行
+**项目结构验证**：
+
+| 目录 | 文件数 | 状态 |
+|------|--------|------|
+| `.claude/agents/` | 4 个 Agent 文件 | ✅ |
+| `.claude/rules/` | 6 个规则文件 | ✅ |
+| `.claude/skills/` | 21 个技能文件 + 3 个脚本 | ✅ |
+| `.claude-plugin/` | plugin.json + PLUGIN_SCHEMA_NOTES.md | ✅ |
+| `hooks/` | hooks.json | ✅ |
+
+**下一步**：
+
+1. **Agent 测试**：验证 4 个 Agents 触发是否正常工作
+2. **技能测试**：验证技能触发是否正常工作
 
 ---
 
@@ -335,4 +513,8 @@
 | 2026-02-03 | 阶段5 完成，3 个 Ideas Skills 标准化 |
 | 2026-02-03 | 阶段6 完成，3 个 Visualization Skills 标准化 |
 | 2026-02-03 | 阶段7 完成，3 个 Dashboard Skills 标准化 |
-| 2026-02-03 | 阶段8 完成，Ideas/Visualization/Dashboard Skills 文档优化（9个） |
+| 2026-02-03 | 架构升级 v2.0：纯 Skills + 选择性 Agents |
+| 2026-02-03 | 阶段9 完成，18 个技能描述优化 |
+| 2026-02-03 | 阶段10 完成，创建 4 个专业 Agents |
+| 2026-02-03 | 会话 #6：修复 plugin.json agents 路径，验证项目结构 |
+
