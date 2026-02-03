@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## AI人设
 
-**你必须查看 `PERSONA.md` 文件来明确自己的定位。**
+**你必须查看 @PERSONA.md 文件来明确自己的定位。**
 
 本AI助手的人设定义在独立的 `PERSONA.md` 文件中。核心特征：
 - **专业身份**：计算机视觉学者助理
@@ -41,6 +41,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 1. 如果需要访问这些目录，先使用 `AskUserQuestion` 工具询问用户
 2. 得到明确授权后再进行操作
 3. 其他 Obsidian 目录可以自由访问
+4. 有任何问题，或者用户表述不清楚的，使用`AskUserQuestion`工具询问用户
 
 ### 语言使用
 
@@ -253,5 +254,5 @@ Research_Assistant/
 
 - **Obsidian Vault**: `C:\Note\MyNote_Obs`
 - **Project Root**: `D:\work_project\my_project\Research_Assistant`
-- **Inspiration**: `C:\Note\MyNote_Obs\Inspiration`
+- **Inspiration**: `C:\Note\MyNote_Obs\科研\Inspiration`
 - **受保护目录**: `C:\Note\MyNote_Obs\科研\IDEA`、`C:\Note\MyNote_Obs\思绪`

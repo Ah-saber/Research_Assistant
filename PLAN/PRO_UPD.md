@@ -1,7 +1,7 @@
 # Research Assistant 技能系统升级 - 进度跟踪
 
 **开始日期**: 2026-02-02
-**当前阶段**: 阶段10 完成（Agents 创建）
+**当前阶段**: 阶段11 完成（Skills 引用文档重组） - 项目初步完成 ✅
 
 ---
 
@@ -517,4 +517,156 @@ description: Search for papers in Zotero library using semantic search, keyword 
 | 2026-02-03 | 阶段9 完成，18 个技能描述优化 |
 | 2026-02-03 | 阶段10 完成，创建 4 个专业 Agents |
 | 2026-02-03 | 会话 #6：修复 plugin.json agents 路径，验证项目结构 |
+| 2026-02-04 | 阶段11 完成，Skills 引用文档重组 |
+| 2026-02-04 | 项目初步完成，所有技能和文档就绪 |
+
+---
+
+## 阶段11：Skills 引用文档重组 ✅ 完成
+
+**完成时间**: 2026-02-04
+
+### 重组目标
+
+将格式参考技能（obsidian-markdown/json-canvas/obsidian-bases）的 SKILL.md 复制到引用这些技能的技能的 ref/ 目录下，实现技能引用本地化。
+
+### 实施内容
+
+| 任务 | 数量 | 状态 |
+|------|------|------|
+| 创建 ref/ 目录 | 13 个技能 | ✅ |
+| 复制 obsidian-markdown.md | 7 个技能 | ✅ |
+| 复制 json-canvas.md | 4 个技能 | ✅ |
+| 复制 obsidian-bases.md | 3 个技能 | ✅ |
+| 复制参考模板到 note-template | 5 个模板 | ✅ |
+| 更新引用路径为 Markdown 链接格式 | 11 个技能 | ✅ |
+| 修正 Inspiration 目录路径 | 2 个文件 | ✅ |
+
+### 引用格式更新
+
+所有技能中的引用从代码格式更新为 Markdown 链接格式：
+
+| 更新前 | 更新后 |
+|--------|--------|
+| `` `obsidian-markdown` `` | `[obsidian-markdown.md](./ref/obsidian-markdown.md)` |
+| `` `json-canvas` `` | `[json-canvas.md](./ref/json-canvas.md)` |
+| `` `obsidian-bases` `` | `[obsidian-bases.md](./ref/obsidian-bases.md)` |
+
+### 目录路径修正
+
+| 文件 | 修正前 | 修正后 |
+|------|--------|--------|
+| `.cursorrules:33` | `C:\Note\MyNote_Obs\Inspiration` | `C:\Note\MyNote_Obs\科研\Inspiration` |
+| `CLAUDE.md:256` | `C:\Note\MyNote_Obs\Inspiration` | `C:\Note\MyNote_Obs\科研\Inspiration` |
+
+### 最终目录结构
+
+```
+.claude/skills/
+├── 格式参考技能 (3个)
+│   ├── obsidian-markdown/SKILL.md
+│   ├── json-canvas/SKILL.md
+│   └── obsidian-bases/SKILL.md
+│
+├── 工作流技能 (18个) - 每个技能都有 ref/ 目录
+│   ├── note-standardize/ref/obsidian-markdown.md
+│   ├── note-organize/ref/obsidian-markdown.md
+│   ├── note-link/ref/obsidian-markdown.md
+│   ├── note-template/ref/
+│   │   ├── obsidian-markdown.md
+│   │   ├── 论文笔记参考.md
+│   │   ├── 概念笔记参考.md
+│   │   ├── 项目笔记参考.md
+│   │   ├── 日志笔记参考.md
+│   │   └── 索引笔记参考.md
+│   ├── paper-notes/ref/
+│   │   ├── obsidian-markdown.md
+│   │   └── json-canvas.md
+│   ├── idea-capture/ref/obsidian-markdown.md
+│   ├── idea-organize/ref/obsidian-markdown.md
+│   ├── paper-graph/ref/json-canvas.md
+│   ├── idea-map/ref/json-canvas.md
+│   ├── knowledge-canvas/ref/json-canvas.md
+│   ├── paper-dashboard/ref/obsidian-bases.md
+│   ├── idea-tracker/ref/obsidian-bases.md
+│   └── research-dashboard/ref/obsidian-bases.md
+```
+
+---
+
+## 项目初步完成 ✅
+
+**完成日期**: 2026-02-04
+
+### 项目成果
+
+| 类别 | 数量 | 状态 |
+|------|------|------|
+| 技能 (Skills) | 21 个 | ✅ |
+| 代理 (Agents) | 4 个 | ✅ |
+| 规则文档 (Rules) | 6 个 | ✅ |
+| 配置文件 | 3 个 | ✅ |
+| Hooks | 1 个 | ✅ |
+| 参考模板 | 5 个 | ✅ |
+
+### 技能分类
+
+| 类别 | 技能数 | 技能列表 |
+|------|--------|----------|
+| **格式参考** | 3 | obsidian-markdown, json-canvas, obsidian-bases |
+| **Reading** | 4 | paper-search, paper-summary, annotation-extract, paper-notes |
+| **Notes** | 5 | note-analyze, note-organize, note-standardize, note-template, note-link |
+| **Ideas** | 3 | idea-capture, idea-organize, idea-review |
+| **Visualization** | 3 | paper-graph, idea-map, knowledge-canvas |
+| **Dashboard** | 3 | paper-dashboard, idea-tracker, research-dashboard |
+
+### 代理分类
+
+| 代理 | 职责 |
+|------|------|
+| literature-synthesizer | 文献综合分析 |
+| note-organizer | 笔记智能整理 |
+| research-note-generator | 研究笔记生成 |
+| note-visualizer | 笔记可视化 |
+
+### 规则文档
+
+| 文档 | 内容 |
+|------|------|
+| agents.md | Agent 使用规范 |
+| coding-style.md | 代码风格规范 |
+| hooks.md | Hooks 使用说明 |
+| workflow.md | 工作流规范 |
+| zotero-integration.md | Zotero 集成规范 |
+| obsidian-integration.md | Obsidian 集成规范 |
+
+### 待验证事项
+
+| 事项 | 优先级 | 说明 |
+|------|--------|------|
+| Agent 触发测试 | P0 | 验证 4 个 Agents 能否正常触发和工作 |
+| 技能触发测试 | P0 | 验证技能能否正确识别用户意图 |
+| 引用链接验证 | P1 | 验证技能中的 Markdown 链接是否有效 |
+| 实际使用测试 | P1 | 在实际工作流中测试功能 |
+
+### 后续优化方向
+
+1. **功能扩展**：根据实际使用反馈添加新技能
+2. **性能优化**：优化 Agent 的决策效率
+3. **文档完善**：补充使用示例和最佳实践
+4. **用户反馈**：收集使用反馈，持续改进
+
+---
+
+## 项目完成声明
+
+Research Assistant 技能系统已初步完成，所有核心功能已实现：
+
+- ✅ 21 个技能就绪，涵盖文献阅读、笔记管理、Idea 管理、可视化和仪表盘
+- ✅ 4 个专业 Agent 就绪，处理复杂多步骤任务
+- ✅ 6 个规则文档提供完整的开发指南
+- ✅ 所有引用格式统一为 Markdown 链接格式
+- ✅ 所有目录路径已修正为正确路径
+
+**项目状态**: 可以开始使用和测试。
 
