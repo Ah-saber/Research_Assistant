@@ -67,7 +67,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 #### 具体步骤
 
 1. **检查自定义 Skills**
-   - 扫描 `.claude/skills/` 目录下所有 18 个技能
+   - 扫描 `.claude/skills/` 目录下所有 21 个技能
    - 判断用户请求是否匹配某个技能的功能范围
    - **即使未明确触发技能**（如未使用 `/skill-name`），只要功能匹配就查看
 

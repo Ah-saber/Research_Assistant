@@ -1,207 +1,160 @@
 # Research Assistant
 
-基于Claude Code的个人学术助理系统，专为计算机视觉学者设计，整合Zotero文献库和Obsidian笔记系统。
+基于 Claude Code 的个人学术助理系统，专为计算机视觉学者设计。整合 Zotero 文献库和 Obsidian 笔记系统，提供文献管理、笔记整理、Idea 管理和可视化功能。
 
-## AI人设
+---
+
+## AI 人设
 
 本系统内置**计算机视觉学者助理**人设，核心特征：
 
 - **研究领域**：基础视觉任务、生成模型、视觉架构
 - **理论框架**：概率与统计偏好
 - **思维特点**：理论导向、问题本质提炼、跨领域迁移
-- **输出标准**：论文笔记包含概率框架分析，Idea包含理论动机分析
+- **输出标准**：论文笔记包含概率框架分析，Idea 包含理论动机分析
 
-详细人设定义见 [PERSONA.md](PERSONA.md)
+详见 [PERSONA.md](PERSONA.md)
 
-## 功能概述
+---
 
-- **文献查询**：在Zotero中搜索论文，提取元数据和注释
-- **论文总结**：自动生成论文摘要和要点
-- **笔记整理**：分析、组织和优化Obsidian笔记
-- **Idea管理**：捕捉、分类和回顾研究想法
-
-## 项目结构
+## 目录结构
 
 ```
-Research_Assistant/
-├── .claude/
-│   └── rules/              # 自定义规则
-├── skills/                 # 自定义Skills (18个)
-│   ├── reading/           # 文献阅读相关 (4个)
-│   ├── notes/             # 笔记整理相关 (5个)
-│   ├── ideas/             # Idea管理相关 (3个)
-│   ├── visualization/     # 可视化图谱 (3个)
-│   └── dashboard/         # 仪表盘 (3个)
-├── docs/                  # 工作文档
-│   ├── workflows/         # 工作流文档
-│   └── guides/            # 使用指南
-├── PLAN/                  # 项目规划文档
-│   ├── PRD.md            # 产品需求文档
-│   ├── PRO.md            # 项目进度文档
-│   ├── 待测试项目.md      # 测试清单
-│   ├── 改进建议.md        # 改进路线图
-│   └── references/       # 参考模板（5个）
-│       ├── 论文笔记参考.md
-│       ├── 概念笔记参考.md
-│       ├── 项目笔记参考.md
-│       ├── 日志笔记参考.md
-│       └── 索引笔记参考.md  # 索引格式规范
-├── .gitignore
-├── .cursorrules           # Claude Code工作规则
-├── PERSONA.md             # AI助理人设文档
-├── CLAUDE.md              # AI助理工作指南
-└── README.md              # 本文件
+.claude/
+├── skills/      # 21 个技能
+│   ├── obsidian-markdown/     # Markdown 格式参考
+│   ├── json-canvas/           # Canvas 格式参考
+│   ├── obsidian-bases/        # Bases 格式参考
+│   ├── paper-search/          # 论文搜索
+│   ├── paper-summary/         # 论文摘要
+│   ├── annotation-extract/    # 注释提取
+│   ├── paper-notes/           # 论文笔记
+│   ├── note-analyze/          # 笔记分析
+│   ├── note-organize/         # 笔记整理
+│   ├── note-link/             # 笔记关联
+│   ├── note-standardize/      # 笔记标准化
+│   ├── note-template/         # 笔记模板
+│   ├── idea-capture/          # Idea 捕捉
+│   ├── idea-organize/         # Idea 整理
+│   ├── idea-review/           # Idea 回顾
+│   ├── paper-graph/           # 论文图谱
+│   ├── idea-map/              # Idea 图谱
+│   ├── knowledge-canvas/      # 知识画布
+│   ├── paper-dashboard/       # 论文仪表盘
+│   ├── idea-tracker/          # Idea 追踪
+│   └── research-dashboard/    # 研究仪表盘
+├── agents/      # 4 个专业代理
+│   ├── literature-synthesizer.md
+│   ├── note-organizer.md
+│   ├── research-note-generator.md
+│   └── note-visualizer.md
+├── rules/       # 规则文档
+│   ├── agents.md
+│   ├── coding-style.md
+│   ├── hooks.md
+│   ├── workflow.md
+│   ├── zotero-integration.md
+│   └── obsidian-integration.md
+├── settings.local.json
+
+.claude-plugin/
+├── plugin.json          # 插件配置
+└── PLUGIN_SCHEMA_NOTES.md
+
+hooks/
+└── hooks.json           # 自动化触发配置
+
+docs/
+├── workflows/           # 工作流文档
+└── guides/              # 使用指南
+
+PLAN/
+├── UPD.md               # 实施计划
+├── PRO_UPD.md           # 进度跟踪
+└── NED.md               # 需求记录
+
+CLAUDE.md                # AI 工作指南
+PERSONA.md               # AI 人设文档
+.mcp.json                # MCP 配置
 ```
+
+---
+
+## 技能分类
+
+| 类别 | 技能 | 功能 |
+|------|------|------|
+| **格式参考** (3) | obsidian-markdown, json-canvas, obsidian-bases | 格式规范文档 |
+| **Reading** (4) | paper-search, paper-summary, annotation-extract, paper-notes | 文献管理 |
+| **Notes** (5) | note-analyze, note-organize, note-link, note-standardize, note-template | 笔记管理 |
+| **Ideas** (3) | idea-capture, idea-organize, idea-review | Idea 管理 |
+| **Visualization** (3) | paper-graph, idea-map, knowledge-canvas | Canvas 可视化 |
+| **Dashboard** (3) | paper-dashboard, idea-tracker, research-dashboard | Bases 仪表盘 |
+
+---
+
+## 代理 (Agents)
+
+| 代理 | 职责 |
+|------|------|
+| literature-synthesizer | 文献综合分析 |
+| note-organizer | 笔记智能整理 |
+| research-note-generator | 研究笔记生成 |
+| note-visualizer | 笔记可视化 |
+
+---
 
 ## 技术栈
 
-| 组件 | 方案 | 状态 |
-|------|------|------|
-| Zotero集成 | 54yyyu/zotero-mcp | 需安装 |
-| Obsidian Markdown | obsidian-markdown skill | 已安装 |
-| Canvas可视化 | json-canvas skill | 已安装 |
-| Bases仪表盘 | obsidian-bases skill | 已安装 |
-| PDF处理 | document-skills (pdf skill) | 已安装 |
-| 工作流封装 | 自定义Skills | 已创建 |
+| 组件 | 方案 |
+|------|------|
+| Zotero 集成 | 54yyyu/zotero-mcp (只读) |
+| Obsidian 集成 | Read/Write/Edit + Glob |
+| Canvas 格式 | json-canvas skill |
+| Bases 格式 | obsidian-bases skill |
+| 自动化 | hooks/hooks.json |
 
-## 快速开始
+---
 
-### 1. 安装Zotero MCP
+## 访问控制
 
-```bash
-pip install git+https://github.com/54yyyu/zotero-mcp.git
-zotero-mcp setup
-```
-
-### 2. 配置MCP服务器
-
-在Claude Code的MCP配置中添加：
-
-```json
-{
-  "mcpServers": {
-    "zotero": {
-      "command": "zotero-mcp",
-      "env": {
-        "ZOTERO_LOCAL": "true"
-      }
-    }
-  }
-}
-```
-
-### 3. 配置路径
-
-编辑`.cursorrules`和`CLAUDE.md`中的路径：
-- Obsidian Vault: `C:\Note\MyNote_Obs`
-
-### 4. 安装Skills
-
-将`skills/`目录下的skill文件复制到Claude Code的skills目录。
-
-## 使用方式
-
-### 文献阅读
-
-```bash
-# 搜索论文
-/paper-search "transformer interpretability"
-
-# 总结论文
-/paper-summary <paper_key>
-
-# 提取注释
-/annotation-extract <paper_key>
-
-# 创建笔记（包含概率框架分析）
-/paper-notes <paper_key>
-```
-
-### 笔记整理
-
-```bash
-# 分析笔记结构
-/note-analyze
-
-# 整理笔记
-/note-organize
-
-# 创建模板
-/note-template
-
-# 建立关联
-/note-link
-
-# 标准化笔记（Callout/Wikilink/Frontmatter/标签）
-/note-standardize
-```
-
-### Idea管理
-
-```bash
-# 捕捉Idea（包含理论动机分析）
-/idea-capture
-
-# 整理Idea
-/idea-organize
-
-# 回顾Idea
-/idea-review
-```
-
-### 可视化图谱
-
-```bash
-# 论文引用关系图谱
-/paper-graph
-
-# Idea概念关系图谱
-/idea-map
-
-# 综合知识画布
-/knowledge-canvas
-```
-
-### 仪表盘追踪
-
-```bash
-# 论文阅读进度追踪
-/paper-dashboard
-
-# Idea状态管理追踪
-/idea-tracker
-
-# 综合研究进度仪表盘
-/research-dashboard
-```
-
-## 工作流文档
-
-详细工作流请参考：
-- [论文阅读工作流](docs/workflows/paper-reading.md)
-- [笔记整理工作流](docs/workflows/note-organization.md)
-- [Idea管理工作流](docs/workflows/idea-management.md)
-
-## 配置说明
-
-### 访问限制
-
-IDEA和思绪目录默认禁止访问，需用户明确授权：
+**受保护目录**（需授权）：
 - `C:\Note\MyNote_Obs\科研\IDEA`
 - `C:\Note\MyNote_Obs\思绪`
 
-### 命名规范
+**可自由访问**：
+- `C:\Note\MyNote_Obs\科研\Inspiration`
+- 其他 Obsidian 目录
 
-- 笔记命名：仅标题，如`论文标题.md`
-- 日期格式：YYYY-MM-DD（frontmatter中）
-- **索引笔记**：必须使用表格格式（见 `PLAN/references/索引笔记参考.md`）
+---
 
-## 依赖项
+## 工作流
 
-- Python 3.8+
-- Zotero 7+
-- Claude Code
-- Obsidian
+- 论文阅读：`paper-search` → `paper-notes` → `idea-capture`
+- 笔记整理：`note-analyze` → `note-organize` → `note-link` → `note-standardize`
+- Idea 管理：`idea-capture` → `idea-organize` → `idea-review`
+
+详见 [docs/workflows/](docs/workflows/)
+
+---
+
+## 配置
+
+### Zotero MCP
+
+安装并配置 Zotero MCP 服务器：
+
+```bash
+pip install git+https://github.com/54yyyu/zotero-mcp.git
+```
+
+### 路径配置
+
+编辑 `CLAUDE.md` 中的路径：
+- Obsidian Vault: `C:\Note\MyNote_Obs`
+- Inspiration: `C:\Note\MyNote_Obs\科研\Inspiration`
+
+---
 
 ## 许可证
 
