@@ -116,17 +116,6 @@ PERSONA.md               # AI 人设文档
 
 ---
 
-## 访问控制
-
-**受保护目录**（需授权）：
-- `C:\Note\MyNote_Obs\科研\IDEA`
-- `C:\Note\MyNote_Obs\思绪`
-
-**可自由访问**：
-- `C:\Note\MyNote_Obs\科研\Inspiration`
-- 其他 Obsidian 目录
-
----
 
 ## 工作流
 
