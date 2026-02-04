@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Skill(mgrep:mgrep)",
+      "Bash(zotero-mcp:*)",
+      "Bash(tasklist:*)",
+      "mcp__zotero__zotero_get_collections",
+      "mcp__zotero__zotero_search_items",
+      "mcp__zotero__zotero_get_item_metadata",
+      "mcp__zotero__zotero_get_item_fulltext",
+      "mcp__zotero__zotero_get_annotations",
+      "Skill(obsidian-markdown)",
+      "Skill(obsidian:obsidian-markdown)",
+      "Skill(obsidian:json-canvas)",
+      "Skill(obsidian:obsidian-bases)",
+      "Bash(python:*)",
+      "Skill(obsidian-bases)",
+      "Bash(tree:*)",
+      "Bash(find:*)",
+      "Bash(test:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "zotero"
+  ]
+}
