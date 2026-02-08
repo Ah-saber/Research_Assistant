@@ -18,7 +18,10 @@
       "Skill(obsidian-bases)",
       "Bash(tree:*)",
       "Bash(find:*)",
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "mcp__zotero__zotero_semantic_search",
+      "Skill(note-standardize)",
+      "Skill(note-organize)"
     ]
   },
   "enableAllProjectMcpServers": true,

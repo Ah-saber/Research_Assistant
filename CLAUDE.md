@@ -177,6 +177,26 @@ Research_Assistant/
 - **标签格式**：层级标签 `#一级/二级/三级`（英文术语）
 - **参考格式**：查看 obsidian-markdown skill 获取完整格式
 
+### 搜索路径约束（CRITICAL）
+
+**禁止全库搜索** - 必须限定搜索范围以避免不必要的性能开销和结果污染。
+
+| 场景 | 推荐搜索路径 | 说明 |
+|------|-------------|------|
+| CV 笔记搜索 | `C:\Note\MyNote_Obs\科研\CV` | 计算机视觉相关笔记 |
+| 论文笔记关联 | `C:\Note\MyNote_Obs\科研\CV` | CV 领域论文笔记 |
+| 跨领域搜索 | 按需询问用户 | 不确定时询问用户 |
+
+**✅ GOOD**：
+```python
+Glob(path="C:\Note\MyNote_Obs\科研\CV", pattern="**/*Diffusion*.md")
+```
+
+**❌ BAD**：
+```python
+Glob(path="C:\Note\MyNote_Obs", pattern="**/*Diffusion*.md")  # 搜索全库，禁止
+```
+
 ### Canvas 可视化
 
 - **布局算法**：层次布局（论文引用）、力导向（Idea 关联）、区域布局（综合画布）
