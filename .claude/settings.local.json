@@ -21,7 +21,9 @@
       "Bash(test:*)",
       "mcp__zotero__zotero_semantic_search",
       "Skill(note-standardize)",
-      "Skill(note-organize)"
+      "Skill(note-organize)",
+      "mcp__github__search_repositories",
+      "mcp__github__get_file_contents"
     ]
   },
   "enableAllProjectMcpServers": true,
