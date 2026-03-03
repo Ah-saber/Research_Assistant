@@ -1,6 +1,6 @@
 ---
 name: note-template
-description: Create standard templates for different note types including paper notes, concept notes, project notes, and index notes. Use when starting new notes with consistent structure, or when the user mentions "创建笔记模板", "笔记模板".
+description: 为不同类型的笔记创建标准模板，包括论文笔记、概念笔记、项目笔记、索引笔记等。**必须使用此技能**当用户说"创建笔记模板"、"笔记模板"、"新笔记模板"、"创建模板"、"笔记格式模板"，或需要创建特定类型的新笔记、为笔记库建立标准格式时。
 version: 1.0.0
 ---
 

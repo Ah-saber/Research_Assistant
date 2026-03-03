@@ -1,6 +1,6 @@
 ---
 name: paper-dashboard
-description: Generate Obsidian Bases dashboard for tracking paper reading progress and status. Use when managing paper reading states and viewing statistics, or when the user mentions "论文仪表盘", "阅读进度", "论文追踪".
+description: 创建 Obsidian Bases 仪表盘，用于追踪和管理论文阅读进度。**必须使用此技能**当用户说"论文仪表盘"、"阅读进度"、"论文追踪"、"论文阅读统计"、"阅读管理"、"阅读状态追踪"，或用户需要管理论文阅读状态、查看论文阅读统计时。
 version: 1.0.0
 ---
 

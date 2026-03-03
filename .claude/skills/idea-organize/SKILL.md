@@ -1,6 +1,6 @@
 ---
 name: idea-organize
-description: Organize and classify ideas in Inspiration directory with tag normalization, deduplication, and grouping. Use when managing accumulated ideas, or when the user mentions "整理Idea", "分类想法".
+description: 整理 Inspiration 目录中的 Idea，包括标签规范化、分组整理、去重识别。**必须使用此技能**当用户说"整理Idea"、"分类想法"、"Idea整理"、"整理Inspiration"、"清理Idea"、"检查重复Idea"、"Idea去重"、"标签规范化"，或需要管理积累的 Idea 时。
 version: 1.0.0
 ---
 

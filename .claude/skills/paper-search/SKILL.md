@@ -1,7 +1,7 @@
 ---
 name: paper-search
-description: Search for papers in Zotero library using semantic search, keyword search, and advanced filters. Use when the user wants to find papers, search literature, query specific authors or years, or mentions "搜索论文", "找论文", "查找相关文献".
-version: 1.0.0
+description: 在 Zotero 库中搜索论文，支持语义搜索、关键词搜索和高级筛选。当 Zotero 无结果时，自动搜索本地 Obsidian 笔记作为补充。**必须使用此技能**当用户说"搜索论文"、"找论文"、"查找相关文献"、"文献搜索"、"搜索相关论文"、"找文献"、"查询论文"、"查询作者"、"搜索某年的论文"，或需要查找特定作者、年份、主题的论文时。
+version: 1.1.0
 ---
 
 # 论文搜索 (Paper Search)
@@ -25,8 +25,11 @@ version: 1.0.0
 | 1 | Semantic search | `semantic_search` | Intent-based queries |
 | 2 | Keyword search | `search_items` | Specific terms |
 | 3 | Title-only search | `search_items(qmode="titleCreatorYear")` | Known paper title |
+| 4 | Local notes search | `obsidian search` | Zotero 无结果时补充 |
 
 **NEVER** rely on a single search method.
+
+**NOTE**: 本地笔记搜索是补充策略，当 Zotero 搜索无结果时触发。
 
 ### Rule 2: Empty Results Handling (CRITICAL)
 
@@ -273,3 +276,18 @@ if not results:
 | 模糊描述 | 语义搜索 | `semantic_search` + 降级 |
 | 浏览集合 | 列表浏览 | `get_collections` |
 | 高级筛选 | 多条件搜索 | `advanced_search` |
+| Zotero 无结果 | 本地笔记补充 | `obsidian search` |
+
+---
+
+## obsidian-cli 参考命令
+
+| 命令 | 用途 | 输出 |
+|------|------|------|
+| `obsidian search query="关键词" limit=10` | 搜索本地笔记 | 文件路径列表 |
+
+**使用说明**：
+- 当 Zotero 所有搜索策略都无结果时，使用 `obsidian search` 搜索本地笔记
+- obsidian-cli 需要 Obsidian 正在运行
+- 使用 Bash 工具执行命令
+- 如果 obsidian-cli 不可用，跳过此步骤

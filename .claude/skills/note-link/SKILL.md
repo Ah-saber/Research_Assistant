@@ -1,7 +1,8 @@
 ---
 name: note-link
-description: Discover and establish semantic connections between notes, create reasonable Wikilinks to enhance note network connectivity. Use when connecting related notes, or when the user mentions "建立关联", "链接笔记", "笔记链接".
-version: 1.0.0
+description: 发现笔记间的语义关联，创建合理 Wikilink 增强笔记网络连通性。**必须使用此技能**当用户说"建立关联"、"链接笔记"、"发现关联"、"修复链接"、"断链检测"、"建立笔记关联"、"检查链接"，或需要为孤立笔记建立连接、发现并创建笔记间的语义关联时。链接完成后自动建议调用：/paper-graph（论文引用关系图谱）、/idea-map（Idea概念关系图谱）、/knowledge-canvas（综合知识画布）。
+version: 1.1.0
+changelog: "[1.1.0] 整合 obsidian-cli backlinks - 检查现有链接避免重复，发现双向关联机会"
 ---
 
 # 笔记关联 (Note Link)
@@ -73,26 +74,50 @@ if matches:
 - 取消
 ```
 
+## obsidian-cli 参考命令
+
+| 命令 | 用途 | 输出 |
+|------|------|------|
+| `obsidian backlinks file="My Note"` | 获取反向链接（哪些笔记链接到此笔记） | 链接源笔记列表 |
+| `obsidian search query="term"` | 搜索笔记（返回文件名） | 匹配的笔记路径 |
+| `obsidian outgoing file="My Note"` | 获取出链（此笔记链接到哪些笔记） | 目标笔记列表 |
+
+**降级策略**：当 obsidian-cli 不可用时，使用 Glob + Read 代替。
+
+---
+
 ## 工作流程
 
-### Step 1: 发现关联
+### Step 1: 检查现有链接
 
-```python
-# 分析目标笔记
-content = read_file(target_note)
+使用 `obsidian backlinks` 获取目标笔记的现有反向链接，避免重复建议：
 
-# 提取关键词
-keywords = extract_keywords(content)
-
-# 搜索相关笔记
-related_notes = search_related(keywords, scope)
-
-# 计算关联度
-for note in related_notes:
-    score = calculate_relevance(target_note, note)
+```bash
+obsidian backlinks file="Transformer架构"
 ```
 
-### Step 2: 建议链接
+解析输出获取已链接的笔记列表。这些笔记应从候选列表中排除。
+
+为什么这很重要：这是 Glob 无法实现的功能。只有 Obsidian 知道完整的链接关系图。检查现有链接可以避免重复创建已存在的链接，并发现双向关联机会（A→B 但 B↛A）。
+
+### Step 2: 快速筛选候选
+
+使用 `obsidian search` 快速筛选相关笔记，减少无效 Read：
+
+```bash
+obsidian search query="attention mechanism" limit=20
+```
+
+注意：`obsidian search` 只返回文件名，仍需使用 Read 工具读取内容进行语义验证。
+
+### Step 3: 读取内容并计算关联度
+
+对每个候选笔记：
+- 使用 Read 工具读取笔记内容
+- 计算关联度 = 标题相似 + 内容相似 + 标签重叠
+- 从候选列表中排除 Step 1 中已发现的现有链接
+
+### Step 4: 建议链接
 
 使用 `AskUserQuestion` 让用户选择：
 
@@ -113,7 +138,7 @@ for note in related_notes:
 请选择要添加的链接：
 ```
 
-### Step 3: 创建链接
+### Step 5: 创建链接
 
 根据用户选择，使用 `Edit` 工具添加链接：
 
@@ -133,7 +158,9 @@ for link in selected_links:
     edit_file(note.file, "", link.text, position=position)
 ```
 
-### Step 4: 验证链接
+### Step 6: 验证链接
+
+使用 Glob 验证链接有效性：
 
 ```python
 # 使用 Glob 验证链接有效性
@@ -144,7 +171,7 @@ def verify_link(link_text):
     return len(matches) > 0
 ```
 
-### Step 5: 可视化建议
+### Step 7: 可视化建议
 
 链接完成后，建议生成可视化图谱：
 
@@ -321,8 +348,9 @@ def fix_broken_link(link_text):
 
 | 工具 | 用途 |
 |------|------|
+| `Bash` | 调用 `obsidian backlinks` 和 `obsidian search` 命令 |
 | `Glob` | 精确匹配文件名，验证链接 |
-| `Read` | 读取笔记内容 |
+| `Read` | 读取笔记内容进行语义分析 |
 | `Edit` | 添加链接到笔记 |
 | `AskUserQuestion` | 用户选择确认 |
 

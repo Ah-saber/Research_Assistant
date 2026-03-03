@@ -1,6 +1,6 @@
 ---
 name: research-dashboard
-description: Generate comprehensive Obsidian Bases dashboard integrating papers, ideas, concepts, and projects. Use when getting a complete overview of research progress, or when the user mentions "研究仪表盘", "进度总览", "研究全景".
+description: 创建 Obsidian Bases 仪表盘，综合展示研究进度，包括论文阅读、Idea 管理、概念笔记等。**必须使用此技能**当用户说"研究仪表盘"、"进度总览"、"研究全景"、"综合仪表盘"、"研究进度总览"、"研究概览"，或用户需要整合多种内容类型、查看综合研究进度时。
 version: 1.0.0
 ---
 

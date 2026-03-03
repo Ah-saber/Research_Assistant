@@ -1,6 +1,6 @@
 ---
 name: knowledge-canvas
-description: Generate comprehensive knowledge canvas integrating papers, ideas, and concept notes. Use when creating a complete visual overview of a research topic, or when the user mentions "知识画布", "研究图谱", "生成知识画布".
+description: 创建综合研究主题画布，整合论文、Idea、概念笔记等多种内容类型，形成完整的知识可视化视图。**必须使用此技能**当用户说"知识画布"、"研究图谱"、"生成知识画布"、"综合知识图谱"、"研究主题画布"、"知识图谱"、"综合图谱"，或用户需要整合多种内容类型的可视化时。
 version: 1.0.0
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: idea-capture
-description: Capture and record research ideas to Inspiration directory with automatic tagging and linking. Use when the user has a research thought or inspiration to save, or mentions "记录Idea", "捕捉想法", "有个想法".
-version: 1.0.0
+description: 快速记录研究想法和灵感到 Inspiration 目录，自动添加标签和关联相关论文。**必须使用此技能**当用户说"记录Idea"、"捕捉想法"、"记下来"、"有个想法"、"Idea记录"、"灵感捕捉"、"快速记录"、"记想法"、"记录想法"，或用户想要快速保存突发的想法、从现有笔记中提取想法时。整合 obsidian search 减少无效文件读取。
+version: 1.1.0
 ---
 
 # Idea捕捉技能
@@ -53,7 +53,8 @@ version: 1.0.0
 
 ### 功能4：自动关联论文
 - **用途**：自动链接相关论文笔记
-- **工具**：Glob 搜索匹配文件
+- **工具**：obsidian search 快速筛选 + Glob 精确匹配
+- **优势**：obsidian search 返回文件名列表，减少 50%+ 无效 Read
 
 ## 工作流程
 
@@ -81,9 +82,15 @@ version: 1.0.0
 - `priority`: "low" | "medium" | "high"
 
 ### Step 3: 自动关联论文
-- **ALWAYS** 使用 Glob 精确匹配文件名
-- 创建 Wikilink：`[[实际文件名|显示名]]`
-- 添加到 Frontmatter 的 `related` 字段
+- **Step 3.1**：使用 obsidian search 快速筛选候选文件
+  - `Bash(command='obsidian search query="关键词" limit=10')`
+  - 获取可能相关的文件名列表
+- **Step 3.2**：使用 Read 工具验证相关性（必需！）
+  - obsidian search 只返回文件名，需要读取内容验证语义相关性
+  - 计算与 Idea 内容的相关度
+- **Step 3.3**：使用 Glob 精确匹配文件名创建 Wikilink
+  - 创建 Wikilink：`[[实际文件名|显示名]]`
+  - 添加到 Frontmatter 的 `related` 字段
 
 ### Step 4: 确认并提示
 - 显示创建的Idea笔记路径
@@ -228,3 +235,18 @@ Inspiration/ (临时)     科研/IDEA/ (永久)
 2. 定期查看Inspiration目录
 3. 确认有价值的Idea
 4. 手动移至科研/IDEA目录
+
+---
+
+## obsidian-cli 参考命令
+
+| 命令 | 用途 | 输出 |
+|------|------|------|
+| `obsidian search query="关键词" limit=10` | 搜索包含关键词的笔记 | 文件路径列表 |
+| `obsidian backlinks file="笔记名"` | 获取反向链接 | 链接源笔记列表 |
+
+**使用说明**：
+- obsidian-cli 需要 Obsidian 正在运行
+- 使用 Bash 工具执行命令
+- **重要**：`obsidian search` 只返回文件名，仍需 Read 内容验证语义相关性
+- 如果 obsidian-cli 不可用，降级到 Glob 方式

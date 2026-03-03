@@ -1,6 +1,6 @@
 ---
 name: idea-map
-description: Generate Canvas visualization of idea concept relationships and thematic associations. Use when visualizing how ideas connect to each other and to theoretical foundations, or when the user mentions "Idea图谱", "想法地图", "生成Idea图谱".
+description: 生成 Inspiration 中 Idea 的可视化概念图谱，展示 Idea 之间的关联、理论基础和跨领域联系。**必须使用此技能**当用户说"Idea图谱"、"想法地图"、"生成Idea图谱"、"可视化想法"、"Idea概念图"、"想法关联图"、"概念图"，或用户需要查看 Idea 之间的关联关系时。
 version: 1.0.0
 ---
 

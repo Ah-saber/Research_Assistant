@@ -1,7 +1,8 @@
 ---
 name: note-analyze
-description: Analyze Obsidian note structure and content, discover semantic connections between notes, identify isolated notes and duplicate content. Use when understanding the current state of notes, or when the user mentions "分析笔记", "笔记结构分析", "笔记语义分析".
-version: 1.0.0
+description: 分析 Obsidian 笔记结构和内容，发现笔记间的语义连接、孤立笔记和重复内容。**必须使用此技能**当用户说"分析笔记"、"笔记结构分析"、"检查笔记状态"、"发现孤立笔记"、"检测重复内容"、"笔记健康检查"、"笔记语义分析"，或需要了解笔记库现状、发现深层语义联系时。
+version: 1.1.0
+changelog: "[1.1.0] 整合 obsidian-cli backlinks - 连接关系图分析，发现关键笔记（高入链/出链）"
 ---
 
 # 笔记分析 (Note Analyze)
@@ -77,18 +78,43 @@ for note_path in notes:
     # 提取关键词、标签、链接等信息
 ```
 
-### Step 2: 结构分析
+### Step 2: 连接关系分析（使用 obsidian backlinks）
+
+使用 `obsidian backlinks` 获取每个笔记的连接关系，这是 Glob 无法实现的功能：
+
+```bash
+# 对每个笔记获取反向链接
+obsidian backlinks file="Transformer架构"
+```
+
+解析输出构建连接关系图：
+
+| 分析维度 | 说明 |
+|----------|------|
+| 入链（backlinks） | 哪些笔记链接到此笔记 |
+| 出链（outlinks） | 此笔记链接到哪些笔记（从内容中提取） |
+| 孤立笔记 | 无入链且无出链 |
+| 关键笔记 | 高入链/出链（知识枢纽） |
+
+为什么这很重要：这是 Glob 无法实现的功能。只有 Obsidian 知道完整的链接关系图。通过分析 backlinks，可以发现：
+- 现有引用关系图（新增能力）
+- 关键笔记（高入链/出链）
+- 孤立笔记（需要建立连接）
+
+### Step 3: 结构分析
 
 ```python
-# 分析笔记结构
+# 分析笔记结构（补充连接关系分析）
 stats = {
     "total_notes": len(notes),
-    "isolated_notes": find_isolated(notes),  # 无入链/出链
-    "popular_notes": find_popular(notes),     # 被引用最多
-    "broken_links": find_broken(notes),       # 断链检测
+    "isolated_notes": find_isolated(connections),  # 基于backlinks
+    "key_notes": find_key_notes(connections),      # 高入链/出链
+    "broken_links": find_broken(notes),            # Glob检测断链
     "missing_frontmatter": check_frontmatter(notes)
 }
 ```
+
+### Step 4: 语义分析（核心）
 
 ### Step 3: 语义分析（核心）
 
@@ -114,7 +140,7 @@ def semantic_analysis(notes):
     }
 ```
 
-### Step 4: 生成报告和建议
+### Step 5: 生成报告和建议
 
 ```python
 # 生成分析报告
@@ -255,8 +281,9 @@ ask_user(suggestions)
 
 | 工具 | 用途 |
 |------|------|
+| `Bash` | 调用 `obsidian backlinks` 获取连接关系 |
 | `Glob` | 扫描笔记文件 |
-| `Read` | 读取笔记内容 |
+| `Read` | 读取笔记内容进行语义分析 |
 | `AskUserQuestion` | 确认执行操作 |
 
 ## 注意事项

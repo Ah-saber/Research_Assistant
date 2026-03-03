@@ -1,6 +1,6 @@
 ---
 name: note-organize
-description: Organize and restructure notes based on analysis results, including tag normalization, link establishment, and duplicate note merging. Use when organizing note directories or creating index notes, or when the user mentions "整理笔记", "优化笔记", "重组笔记".
+description: 根据分析结果整理和优化笔记结构，包括标签规范化、建立链接、合并重复笔记、创建索引笔记。**必须使用此技能**当用户说"整理笔记"、"优化笔记"、"重组笔记"、"创建索引"、"论文目录整理"、"合并重复笔记"、"标签规范化"，或需要规范化标签格式、合并重复内容、创建索引笔记时。
 version: 1.0.0
 ---
 

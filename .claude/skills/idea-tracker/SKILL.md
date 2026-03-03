@@ -1,6 +1,6 @@
 ---
 name: idea-tracker
-description: Generate Obsidian Bases dashboard for tracking idea status and progress. Use when managing idea states and identifying ideas needing attention, or when the user mentions "Idea追踪", "想法管理", "Idea仪表盘".
+description: 创建 Obsidian Bases 仪表盘，用于追踪和管理研究 Idea 的状态和进展。**必须使用此技能**当用户说"Idea追踪"、"想法管理"、"Idea仪表盘"、"Idea状态追踪"、"想法进度"、"Idea管理"，或用户需要管理 Idea 状态、查看 Idea 进展统计时。
 version: 1.0.0
 ---
 

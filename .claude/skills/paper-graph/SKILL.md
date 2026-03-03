@@ -1,6 +1,6 @@
 ---
 name: paper-graph
-description: Generate Canvas visualization of paper citation relationships and thematic associations. Use when visualizing how papers cite each other, or when the user mentions "论文图谱", "论文关系图", "生成论文图谱".
+description: 生成论文引用关系的可视化 Canvas 图谱，展示论文之间的引用、主题关联和跨领域联系。**必须使用此技能**当用户说"论文图谱"、"论文关系图"、"生成论文图谱"、"论文引用网络"、"可视化论文关系"、"引用关系图"、"论文关系可视化"，或用户需要查看论文之间的引用关系时。
 version: 1.0.0
 ---
 

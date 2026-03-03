@@ -1,6 +1,6 @@
 ---
 name: paper-summary
-description: Generate detailed Chinese summary of research papers including background, problem statement, methodology, results, and conclusions. Use when the user wants to understand a paper's content without reading the full text, or mentions "总结论文", "论文概要", "生成摘要".
+description: 生成论文的详细中文摘要，包括研究背景、问题、方法、结果和结论。**必须使用此技能**当用户说"总结论文"、"论文概要"、"论文摘要"、"概括内容"、"这篇论文讲了什么"、"论文主要内容"，或用户搜索论文后希望了解某篇论文内容时。
 version: 1.0.0
 ---
 

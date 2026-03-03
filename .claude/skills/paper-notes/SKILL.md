@@ -1,6 +1,6 @@
 ---
 name: paper-notes
-description: Create complete Obsidian notes for research papers with metadata, abstract, formulas, probability framework analysis, and personal reflections (MyPoint). Use when the user finishes reading a paper and wants to save notes, or mentions "创建论文笔记", "为论文写笔记", "论文笔记".
+description: 为论文创建完整的 Obsidian 笔记，包含元数据、摘要、公式、概率框架分析和个人思考（MyPoint）。**必须使用此技能**当用户说"创建论文笔记"、"为论文写笔记"、"论文笔记"、"生成论文笔记"、"记录论文"、"创建笔记"，或用户阅读完论文后需要保存笔记时。
 version: 1.0.0
 ---
 

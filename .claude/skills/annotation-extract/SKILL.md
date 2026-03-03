@@ -1,6 +1,6 @@
 ---
 name: annotation-extract
-description: Extract PDF highlights and annotations from Zotero, organize by color groups, and format for Obsidian import. Use when the user has highlighted passages in PDFs and wants to extract them to notes, or mentions "提取注释", "获取高亮", "PDF笔记".
+description: 从 Zotero 提取 PDF 高亮和笔记，按颜色分组组织并格式化为 Obsidian 可导入格式。**必须使用此技能**当用户说"提取注释"、"获取高亮"、"导出笔记"、"提取PDF注释"、"查看标注"、"PDF笔记"、"导出高亮"，或用户需要整理在 Zotero Reader 中添加的标注时。
 version: 1.0.0
 ---
 

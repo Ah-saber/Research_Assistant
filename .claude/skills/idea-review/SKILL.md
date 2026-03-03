@@ -1,6 +1,6 @@
 ---
 name: idea-review
-description: Review and manage ideas in Inspiration directory with filtering, sorting, and action suggestions. Use when checking on existing ideas, or when the user mentions "回顾Idea", "查看想法".
+description: 回顾 Inspiration 目录中的 Idea，按不同维度查看和评估，提供行动建议。**必须使用此技能**当用户说"回顾Idea"、"查看想法"、"Idea回顾"、"查看Inspiration"、"我的想法"、"查看Idea"、"想法回顾"、"评估Idea"，或用户想查看 Inspiration 中的 Idea、评估 Idea 价值时。
 version: 1.0.0
 ---
 
