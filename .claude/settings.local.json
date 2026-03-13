@@ -25,11 +25,14 @@
       "mcp__github__search_repositories",
       "mcp__github__get_file_contents",
       "mcp__github__search_code",
-      "Bash(read f:*)"
+      "Bash(read f:*)",
+      "mcp__zotero__zotero_advanced_search",
+      "mcp__sequential-thinking__sequentialthinking"
     ]
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
+    "github",
     "zotero"
   ]
 }
