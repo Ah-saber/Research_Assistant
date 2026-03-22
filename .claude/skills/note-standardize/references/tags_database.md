@@ -132,4 +132,12 @@
 
 当发现全新类型的标签时，添加到这里：
 
-*（待补充）*
+| 标签 | 说明 | 相似关键词 |
+|------|------|-----------|
+| `CV/Low-Level/low-light` | 低光照图像处理 | Low-light, Dark Image, Night Scene |
+| `CV/Low-Level/Visable` | 可见光图像处理（通用） | Visible Light, RGB Image |
+| `Method/Learning/Transfer` | 迁移学习/微调 | Transfer Learning, Fine-tuning, Adaptation |
+| `Method/Learning/Fine-Tuning` | 微调策略 | Fine-tuning, Joint Optimization, Unified Training |
+| `Method/Optimization/Sampling` | 采样优化 | Sampling, Inference Acceleration, Feature Caching |
+| `Method/Architecture/Adapter` | 适配器架构 | Adapter, LoRA, Parameter-Efficient |
+| `CV/Domain/Remote-Sensing` | 遥感图像处理领域 | Remote Sensing, Satellite Image, Aerial Image |

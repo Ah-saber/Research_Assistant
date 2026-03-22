@@ -27,7 +27,8 @@
       "mcp__github__search_code",
       "Bash(read f:*)",
       "mcp__zotero__zotero_advanced_search",
-      "mcp__sequential-thinking__sequentialthinking"
+      "mcp__sequential-thinking__sequentialthinking",
+      "Bash(obsidian tags:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
